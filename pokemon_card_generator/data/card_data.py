@@ -8,7 +8,10 @@ def get_card_data():
     # list all the files in data
     from os import walk, path
 
-    pickles_path = "../raw_data/pickles"
+    two_dirs_up = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
+
+    pickles_path = path.join(two_dirs_up, "raw_data/pickles")
+
     filenames = next(walk(pickles_path), (None, None, []))[2]  # [] if no file
 
     # create a final df with first pickles
