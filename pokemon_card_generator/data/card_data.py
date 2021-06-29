@@ -1,13 +1,13 @@
 import csv
 import pandas as pd
 from pokemon_card_generator.data.set_data import get_sets
+from os import walk, path
 
 
 def get_card_data():
     """Concatenates all the pickles in 'raw_data/pickles' and returns a dataframe.
     Usage: from pokemon_card_generator.data import card_data; card_df = card_data.get_card_data()"""
     # list all the files in data
-    from os import walk, path
 
     two_dirs_up = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
 
