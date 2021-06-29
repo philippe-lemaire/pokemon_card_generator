@@ -1,7 +1,11 @@
 import requests
 import pandas as pd
+from os import walk, path
 
-api_file = "../../api-key/key"
+
+three_dirs_up = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
+
+api_file = path.join(three_dirs_up, "pokemontcg_api_key/key")
 
 base_uri = "https://api.pokemontcg.io/v2/"
 
@@ -32,3 +36,7 @@ def get_sets():
     sets_df = pd.DataFrame(sets)
     sets_df.releaseDate = pd.to_datetime(sets_df.releaseDate)
     return sets_df
+
+
+if __name__ == "main":
+    print(api_file)
