@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+from pokemon_card_generator.data.set_data import get_sets
 
 
 def get_card_data():
@@ -25,5 +26,12 @@ def get_card_data():
 
     cards_df.reset_index(inplace=True)
     cards_df.drop(columns=["level_0"], inplace=True)
+
+    ## add release dates in a new column
+    sets_df = get_sets()
+    release_date_dict = {k: v for k, v in zip(sets_df.id, sets_df.releaseDate)}
+    card_sets = [row["id"].split("-")[0] for _, row in cards_df.iterrows()]
+    card_release_dates = pd.Series([release_date_dict[set_] for set_ in card_sets])
+    cards_df["releaseDate"] = card_release_dates
 
     return cards_df
