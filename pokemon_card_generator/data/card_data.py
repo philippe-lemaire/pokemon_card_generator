@@ -64,4 +64,14 @@ def get_card_data():
 
     cards_df["resistances"] = pd.Series(resistances)
 
+    ## set hp column to numbers
+    hp_list = []
+    for card_hp in cards_df.hp:
+        try:
+            hp_list.append(int(card_hp))
+        except:
+            hp_list.append(card_hp)
+
+    cards_df["hp"] = pd.Series(hp_list)
+
     return cards_df
