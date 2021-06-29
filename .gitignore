@@ -6,3 +6,4 @@ raw_data/
 *.csv
 **/__pycache__/
 .env
+pokemontcg_api_key/
