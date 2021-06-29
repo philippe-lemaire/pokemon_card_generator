@@ -30,4 +30,5 @@ def get_sets():
     url = base_uri + endpoint
     sets = requests.get(url, params=params, headers=headers).json()["data"]
     sets_df = pd.DataFrame(sets)
+    sets_df.releaseDate = pd.to_datetime(sets_df.releaseDate)
     return sets_df
