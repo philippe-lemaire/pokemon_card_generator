@@ -739,7 +739,7 @@ pokemon_list = [
     "Palkia",
     "Amoonguss",
     "Kingler",
-    "Ho-oh",
+    "Ho-Oh",
     "Milotic",
     "Heatran",
     "Frillish",
@@ -898,4 +898,3 @@ pokemon_list = [
     "Meloetta",
     "Genesect",
 ]
-
