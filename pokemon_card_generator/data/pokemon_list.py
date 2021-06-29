@@ -191,7 +191,7 @@ pokemon_list = [
     "Gogoat",
     "Lycanroc",
     "Chewtle",
-    "Pikachudagger[c]",
+    "Pikachudagger",
     "Togetic",
     "Taillow",
     "Bastiodon",
