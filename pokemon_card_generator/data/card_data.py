@@ -34,4 +34,34 @@ def get_card_data():
     card_release_dates = pd.Series([release_date_dict[set_] for set_ in card_sets])
     cards_df["releaseDate"] = card_release_dates
 
+    ## Remove the list from types and fill in the first type
+    types = []
+    for type_ in cards_df.types:
+        try:
+            types.append(type_[0])
+        except:
+            types.append(type_)
+    cards_df.types = pd.Series(types)
+
+    ## Clean up weaknesses
+    weaknesses = []
+    for weakness in cards_df.weaknesses:
+        try:
+            weaknesses.append(weakness[0]["type"])
+        except:
+            types.append(weakness)
+
+    cards_df.weaknesses = pd.Series(weaknesses)
+
+    ## Clean up resistances
+
+    resistances = []
+    for resistance in cards_df.resistances:
+        try:
+            resistances.append(resistance[0]["type"])
+        except:
+            resistances.append(resistance)
+
+    cards_df["resistances"] = pd.Series(resistances)
+
     return cards_df
