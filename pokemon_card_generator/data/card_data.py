@@ -232,4 +232,7 @@ def get_card_data():
     # drop column abilities
     cards_df.drop(columns=["abilities"], inplace=True)
 
+    # drop cards with no rarity
+    cards_df = cards_df.drop(cards_df[cards_df.rarity.isna()].index)
+
     return cards_df
