@@ -93,6 +93,9 @@ def get_card_data():
     # drop one card with japanese text
     cards_df = cards_df.drop(cards_df[cards_df.id == "xy12-109"].index)
 
+    # drop cards of squads (several pokémon on the same card)
+    cards_df = cards_df.drop(cards_df[cards_df.name.str.contains("&")].index)
+
     ## remove useless columns
     useless_cols = [
         "level",
@@ -259,6 +262,7 @@ def get_card_data():
         "_____'s ",
         "Flying ",
         "Surfing ",
+        "Shining ",
     ]
 
     for trainer in trainer_names:
@@ -292,6 +296,14 @@ def get_card_data():
     cards_df["Vmax_pokemon"] = Vmax_pokemon
     # remove " VMAX" from name
     cards_df.name = cards_df.name.apply(lambda x: x.rstrip(" VMAX"))
+
+    # remove " -G" from name
+    cards_df.name = cards_df.name.apply(lambda x: x.rstrip("-G"))
+    # remove " -E" from name
+    cards_df.name = cards_df.name.apply(lambda x: x.rstrip("-E"))
+    cards_df.name = cards_df.name.apply(lambda x: x.rstrip(" E"))
+    # remove "M " at the begining of Mega evolution cards
+    cards_df.name = cards_df.name.apply(lambda x: x.replace("M ", ""))
 
     # remove "Rapid Strike" and "Single Strike" from name
     gimmicks = ["Rapid Strike", "Single Strike"]
