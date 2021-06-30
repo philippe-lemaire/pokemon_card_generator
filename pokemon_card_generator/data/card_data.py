@@ -64,6 +64,17 @@ def get_card_data():
 
     cards_df["resistances"] = pd.Series(resistances)
 
+    ## Clean up subtypes
+
+    subtypes = []
+    for subtype in cards_df.subtypes:
+        try:
+            subtypes.append(subtype[0])
+        except:
+            subtypes.append(subtype)
+
+    cards_df["subtypes"] = pd.Series(subtypes)
+
     ## set hp column to numbers
     hp_list = []
     for card_hp in cards_df.hp:
@@ -73,5 +84,27 @@ def get_card_data():
             hp_list.append(card_hp)
 
     cards_df["hp"] = pd.Series(hp_list)
+
+    ## remove non pokémon cards
+
+    cards_df = cards_df[cards_df.supertype == "Pokémon"]
+
+    ## remove useless columns
+    useless_cols = [
+        "level",
+        "number",
+        "ancientTrait",
+        "artist",
+        "nationalPokedexNumbers",
+        "legalities",
+        "images",
+        "tcgplayer",
+        "index",
+        "supertype",
+        "set",
+        "retreatCost",
+    ]
+
+    cards_df.drop(columns=useless_cols, inplace=True)
 
     return cards_df
