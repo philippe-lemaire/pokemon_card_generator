@@ -203,4 +203,33 @@ def get_card_data():
 
     cards_df.drop(columns=["attacks"], inplace=True)
 
+    ability1_name = [
+        item[0]["name"] if isinstance(item, list) else "" for item in cards_df.abilities
+    ]
+
+    # flatten ability 1
+    ability1_text = [
+        item[0]["text"] if isinstance(item, list) else "" for item in cards_df.abilities
+    ]
+
+    cards_df["ability1_name"] = ability1_name
+    cards_df["ability1_text"] = ability1_text
+
+    ## flatten abitily 2
+    ability2_name = [
+        item[1]["name"] if isinstance(item, list) and len(item) > 1 else ""
+        for item in cards_df.abilities
+    ]
+
+    ability2_text = [
+        item[1]["text"] if isinstance(item, list) and len(item) > 1 else ""
+        for item in cards_df.abilities
+    ]
+
+    cards_df["ability2_name"] = ability2_name
+    cards_df["ability2_text"] = ability2_text
+
+    # drop column abilities
+    cards_df.drop(columns=["abilities"], inplace=True)
+
     return cards_df
