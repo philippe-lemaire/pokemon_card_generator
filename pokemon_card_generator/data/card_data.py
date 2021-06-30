@@ -2,6 +2,7 @@ import csv
 import pandas as pd
 from pokemon_card_generator.data.set_data import get_sets
 from os import walk, path
+import string
 
 
 def get_card_data():
@@ -88,6 +89,9 @@ def get_card_data():
     ## remove non pokémon cards
 
     cards_df = cards_df[cards_df.supertype == "Pokémon"]
+
+    # drop one card with japanese text
+    cards_df = cards_df.drop(cards_df[cards_df.id == "xy12-109"].index)
 
     ## remove useless columns
     useless_cols = [
@@ -259,6 +263,13 @@ def get_card_data():
 
     for trainer in trainer_names:
         cards_df.name = cards_df.name.apply(lambda x: x.replace(trainer, ""))
+
+    # remove trainer's names from pokemon name
+
+    letters = [f" [{letter}]" for letter in string.ascii_uppercase]
+
+    for letter in letters:
+        cards_df.name = cards_df.name.apply(lambda x: x.replace(letter, ""))
 
     # fill nan in weaknesess
     cards_df.weaknesses.fillna("No_weaknesses", inplace=True)
