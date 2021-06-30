@@ -263,6 +263,11 @@ def get_card_data():
         "Flying ",
         "Surfing ",
         "Shining ",
+        "Ash's ",
+        "Team Magma's ",
+        "Team Aqua's ",
+        "Holon's ",
+        "Imakuni?'s ",
     ]
 
     for trainer in trainer_names:
@@ -302,12 +307,51 @@ def get_card_data():
     # remove " -E" from name
     cards_df.name = cards_df.name.apply(lambda x: x.rstrip("-E"))
     cards_df.name = cards_df.name.apply(lambda x: x.rstrip(" E"))
+
     # remove "M " at the begining of Mega evolution cards
     cards_df.name = cards_df.name.apply(lambda x: x.replace("M ", ""))
 
     # remove "Rapid Strike" and "Single Strike" from name
-    gimmicks = ["Rapid Strike", "Single Strike"]
+    gimmicks = [
+        "Rapid Strike ",
+        "Single Strike ",
+        " δ",
+        " ◇",
+        " LV.",
+        " East Sea",
+        " West Sea",
+        " Plant Cloak",
+        " Sandy Cloak",
+        " Trash Cloak",
+        " E4",
+        " GL",
+        " FB",
+        "Galarian ",
+        "Alolan ",
+        "Dawn Wings ",
+        "Dusk Wings ",
+        "Dawn Wings ",
+        "Primal ",
+        " BREAK",
+        "Black ",
+        "White ",
+        " LEGEND",
+        " Star",
+        "Detective ",
+        "Armored ",
+        "Special Delivery ",
+        "Dusk Mane ",
+        "Ultra ",
+        # rotom is fun
+        "Mow ",
+        "Heat ",
+        "Wash ",
+        "Frost ",
+    ]
+
     for gimmick in gimmicks:
         cards_df.name = cards_df.name.apply(lambda x: x.replace(gimmick, ""))
+
+    ## clean up more names
 
     return cards_df
