@@ -107,4 +107,100 @@ def get_card_data():
 
     cards_df.drop(columns=useless_cols, inplace=True)
 
+    ## flatten attack 1
+    attack1_name = [
+        item[0]["name"] if isinstance(item, list) else item for item in cards_df.attacks
+    ]
+
+    attack1_cost = [
+        item[0]["cost"] if isinstance(item, list) else item for item in cards_df.attacks
+    ]
+
+    attack1_converted_cost = [
+        len(cost) if isinstance(cost, list) else cost for cost in attack1_cost
+    ]
+
+    attack1_damage = [
+        item[0]["damage"] if isinstance(item, list) else item
+        for item in cards_df.attacks
+    ]
+
+    attack1_text = [
+        item[0]["text"] if isinstance(item, list) else item for item in cards_df.attacks
+    ]
+
+    cards_df["attack1_name"] = attack1_name
+    cards_df["attack1_cost"] = attack1_cost
+    cards_df["attack1_converted_cost"] = attack1_converted_cost
+    cards_df["attack1_damage"] = attack1_damage
+    cards_df["attack1_text"] = attack1_text
+
+    ## flatening attack 2
+    attack2_name = [
+        item[1]["name"] if isinstance(item, list) and len(item) > 1 else ""
+        for item in cards_df.attacks
+    ]
+
+    attack2_cost = [
+        item[1]["cost"] if isinstance(item, list) and len(item) > 1 else ""
+        for item in cards_df.attacks
+    ]
+
+    attack2_converted_cost = [
+        len(cost) if isinstance(cost, list) and len(cost) > 1 else cost
+        for cost in attack2_cost
+    ]
+
+    attack2_damage = [
+        item[1]["damage"] if isinstance(item, list) and len(item) > 1 else ""
+        for item in cards_df.attacks
+    ]
+
+    attack2_text = [
+        item[1]["text"] if isinstance(item, list) and len(item) > 1 else ""
+        for item in cards_df.attacks
+    ]
+
+    cards_df["attack2_name"] = attack2_name
+    cards_df["attack2_cost"] = attack2_cost
+    cards_df["attack2_converted_cost"] = attack2_converted_cost
+    cards_df["attack2_damage"] = attack2_damage
+    cards_df["attack2_text"] = attack2_text
+
+    ## flatten attack 3
+    attack3_name = [
+        item[2]["name"] if isinstance(item, list) and len(item) > 2 else ""
+        for item in cards_df.attacks
+    ]
+
+    attack3_cost = [
+        item[2]["cost"] if isinstance(item, list) and len(item) > 2 else ""
+        for item in cards_df.attacks
+    ]
+
+    attack3_converted_cost = [
+        len(cost) if isinstance(cost, list) and len(cost) > 1 else cost
+        for cost in attack3_cost
+    ]
+
+    attack3_damage = [
+        item[2]["damage"] if isinstance(item, list) and len(item) > 2 else ""
+        for item in cards_df.attacks
+    ]
+
+    attack3_text = [
+        item[2]["text"] if isinstance(item, list) and len(item) > 2 else ""
+        for item in cards_df.attacks
+    ]
+
+    cards_df["attack3_name"] = attack3_name
+    cards_df["attack3_cost"] = attack3_cost
+    cards_df["attack3_converted_cost"] = attack3_converted_cost
+    cards_df["attack3_damage"] = attack3_damage
+    cards_df["attack3_text"] = attack3_text
+
+    ## drop column attacks
+
+    cards_df.drop(columns=["attacks"], inplace=True)
+
     return cards_df
