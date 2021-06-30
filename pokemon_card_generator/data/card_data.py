@@ -266,4 +266,8 @@ def get_card_data():
     # fill nan in resistances
     cards_df.resistances.fillna("No_resistances", inplace=True)
 
+    # fill nan in evolves to
+
+    cards_df.evolvesTo.fillna("final_stage", inplace=True)
+
     return cards_df
