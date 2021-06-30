@@ -235,4 +235,35 @@ def get_card_data():
     # drop cards with no rarity
     cards_df = cards_df.drop(cards_df[cards_df.rarity.isna()].index)
 
+    # remove light from name
+    cards_df.name = cards_df.name.apply(lambda x: x.replace("Light ", ""))
+
+    # remove dark from name
+    cards_df.name = cards_df.name.apply(lambda x: x.replace("Dark ", ""))
+
+    # remove trainer's names from pokemon name
+    trainer_names = [
+        "Blaine's ",
+        "Brock's ",
+        "Erika's ",
+        "Lt. Surge's ",
+        "Misty's ",
+        "Rocket's ",
+        "Sabrina's ",
+        "Giovanni's ",
+        "Koga's ",
+        "_____'s ",
+        "Flying ",
+        "Surfing ",
+    ]
+
+    for trainer in trainer_names:
+        cards_df.name = cards_df.name.apply(lambda x: x.replace(trainer, ""))
+
+    # fill nan in weaknesess
+    cards_df.weaknesses.fillna("No_weaknesses", inplace=True)
+
+    # fill nan in resistances
+    cards_df.resistances.fillna("No_resistances", inplace=True)
+
     return cards_df
