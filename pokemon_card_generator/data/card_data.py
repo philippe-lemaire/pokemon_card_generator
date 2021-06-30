@@ -281,4 +281,21 @@ def get_card_data():
 
     cards_df.evolvesTo.fillna("final_stage", inplace=True)
 
+    ## create V_pokemon column and remove " V" from end of name
+    V_pokemon = [1 if name.endswith(" V") else 0 for name in cards_df.name]
+    cards_df["V_pokemon"] = V_pokemon
+    # remove " V" from name
+    cards_df.name = cards_df.name.apply(lambda x: x.rstrip(" V"))
+
+    ## create Vmax_pokemon column and remove " VMAX" at the end of name
+    Vmax_pokemon = [1 if name.endswith(" VMAX") else 0 for name in cards_df.name]
+    cards_df["Vmax_pokemon"] = Vmax_pokemon
+    # remove " VMAX" from name
+    cards_df.name = cards_df.name.apply(lambda x: x.rstrip(" VMAX"))
+
+    # remove "Rapid Strike" and "Single Strike" from name
+    gimmicks = ["Rapid Strike", "Single Strike"]
+    for gimmick in gimmicks:
+        cards_df.name = cards_df.name.apply(lambda x: x.replace(gimmick, ""))
+
     return cards_df
