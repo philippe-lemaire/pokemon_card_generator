@@ -1,0 +1,40 @@
+base_card_dict = {
+    "data": {
+        "id": "",
+        "name": "",
+        "supertype": "Pokémon",
+        "subtypes": [],
+        "hp": "130",
+        "types": [],
+        "evolvesFrom": "Kirlia",
+        "abilities": [{"name": "", "text": "", "type": "Ability"}],
+        "attacks": [
+            {"name": "", "cost": [], "convertedEnergyCost": 0, "damage": "", "text": ""}
+        ],
+        "weaknesses": [{"type": "", "value": "×2"}],
+        "resistances": [{"type": "", "value": "-20"}],
+        "retreatCost": [],
+        "convertedRetreatCost": 0,
+        "set": {
+            "id": "",
+            "name": "",
+            "series": "",
+            "printedTotal": 0,
+            "total": 0,
+            "legalities": {"unlimited": "Legal", "expanded": "Legal"},
+            "ptcgoCode": "",
+            "releaseDate": "",
+            "updatedAt": "",
+            "images": {"symbol": "", "logo": ""},
+        },
+        "number": "0",
+        "artist": "",
+        "rarity": "",
+        "flavorText": "",
+        "nationalPokedexNumbers": [0],
+        "legalities": {"unlimited": "Legal", "expanded": "Legal"},
+        "images": {"small": "", "large": ""},
+        "tcgplayer": {},
+        "reverseHolofoil": {},
+    }
+}
