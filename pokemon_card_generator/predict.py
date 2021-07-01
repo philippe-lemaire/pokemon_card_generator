@@ -3,6 +3,7 @@ from pokemon_card_generator.data.card_data import get_card_data
 from pokemon_card_generator.data.base_card_dict import base_card_dict
 from pokemon_card_generator.models.attacks import *
 from pokemon_card_generator.data.scrap_data import get_stats
+from pokemon_card_generator.models.flavor_text import generate_flavor
 
 
 def predict_hp(pokémon_name, cards_df, *args, **kwargs):
@@ -140,5 +141,5 @@ def create_card(pokémon_name, rarity):
     )
     card_dict["data"]["weight"] = predict_weight(pokémon_name, cards_df)
     card_dict["data"]["retreatCost"] = predict_retreatCost(pokémon_name, cards_df)
-
+    card_dict["data"]["flavorText"] = generate_flavor(pokémon_name)
     return card_dict
