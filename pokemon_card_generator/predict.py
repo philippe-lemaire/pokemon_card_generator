@@ -1,6 +1,7 @@
 from pokemon_card_generator.data.pokemon_list import pokemon_list
 from pokemon_card_generator.data.card_data import get_card_data
 from pokemon_card_generator.data.base_card_dict import base_card_dict
+from pokemon_card_generator.models.attacks import *
 
 
 def predict_hp(pokémon_name, cards_df, *args, **kwargs):
@@ -68,4 +69,6 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["rarity"] = rarity
     card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name, cards_df)
     card_dict["data"]["types"] = predict_types(pokémon_name, cards_df)
+    card_dict["data"]["attacks"] = attacks_generator(pokémon_name, cards_df, rarity)
+
     return card_dict
