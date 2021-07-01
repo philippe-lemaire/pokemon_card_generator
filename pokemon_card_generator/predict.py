@@ -2,6 +2,7 @@ from pokemon_card_generator.data.pokemon_list import pokemon_list
 from pokemon_card_generator.data.card_data import get_card_data
 from pokemon_card_generator.data.base_card_dict import base_card_dict
 from pokemon_card_generator.models.attacks import *
+from pokemon_card_generator.models.abilities import *
 from pokemon_card_generator.data.scrap_data import get_stats
 from pokemon_card_generator.models.flavor_text import generate_flavor
 
@@ -135,6 +136,7 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name, cards_df)
     card_dict["data"]["types"] = predict_types(pokémon_name, cards_df)
     card_dict["data"]["attacks"] = attacks_generator(pokémon_name, cards_df, rarity)
+    card_dict["data"]["abilities"] = abilitys_generator(pokémon_name, cards_df, rarity)
     card_dict["data"]["weaknesses"] = predict_weaknesses(pokémon_name, cards_df, rarity)
     card_dict["data"]["resistances"] = predict_resistances(
         pokémon_name, cards_df, rarity
