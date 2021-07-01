@@ -4,9 +4,9 @@ base_card_dict = {
         "name": "",
         "supertype": "Pokémon",
         "subtypes": [],
-        "hp": "130",
+        "hp": "0",
         "types": [],
-        "evolvesFrom": "Kirlia",
+        "evolvesFrom": "",
         "abilities": [{"name": "", "text": "", "type": "Ability"}],
         "attacks": [
             {"name": "", "cost": [], "convertedEnergyCost": 0, "damage": "", "text": ""}
