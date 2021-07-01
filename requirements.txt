@@ -34,3 +34,6 @@ termcolor
 
 # web
 flask
+
+# Openai for text models
+openai
