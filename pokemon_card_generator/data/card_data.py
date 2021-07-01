@@ -268,12 +268,13 @@ def get_card_data():
         "Team Aqua's ",
         "Holon's ",
         "Imakuni?'s ",
+        "Ash-",
     ]
 
     for trainer in trainer_names:
         cards_df.name = cards_df.name.apply(lambda x: x.replace(trainer, ""))
 
-    # remove trainer's names from pokemon name
+    # remove [A] and so on from Unown's names
 
     letters = [f" [{letter}]" for letter in string.ascii_uppercase]
 
@@ -347,11 +348,40 @@ def get_card_data():
         "Heat ",
         "Wash ",
         "Frost ",
+        # forme
+        " Speed Forme",
+        " Normal Forme",
+        " Rain Form",
+        " Attack Forme",
+        " Defense Forme",
+        " Snow-Cloud Form",
+        " Sunny Form",
+        "Snow-cloud ",
+        "Sunny ",
+        "Rain ",
     ]
 
     for gimmick in gimmicks:
         cards_df.name = cards_df.name.apply(lambda x: x.replace(gimmick, ""))
 
-    ## clean up more names
+    ## clean up nidoran male and female names
+    cards_df.name = cards_df.name.apply(lambda x: x.replace("Nidoran ", "Nidoran"))
+
+    ## clean up " ex"
+    def clean_ex(s):
+        if s.endswith(" ex"):
+            s = s[:-3]
+        return s
+
+    cards_df.name = cards_df.name.apply(lambda x: clean_ex(x))
+
+    ## clean up trailing letter
+    def clean_trailing(s):
+        for letter in string.ascii_uppercase + "?" + "!":
+            if s.endswith(f" {letter}"):
+                s = s[:-2]
+        return s
+
+    cards_df.name = cards_df.name.apply(lambda x: clean_trailing(x))
 
     return cards_df
