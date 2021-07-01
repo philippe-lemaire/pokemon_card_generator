@@ -59,6 +59,48 @@ def predict_types(pokémon_name, cards_df, *args, **kwargs):
     return [types]
 
 
+def predict_weaknesses(pokémon_name, cards_df, *args, **kwargs):
+    """Dummy baseline, returns the same type as the last card of the same name."""
+
+    time_series_df = cards_df[["name", "releaseDate", "weaknesses"]]
+
+    # one observation per pokemon in our list
+    observations = []
+
+    for pokemon in pokemon_list:
+        mask = time_series_df["name"] == pokemon
+        df = time_series_df[mask]
+        observations.append(df.weaknesses.to_list())
+
+    weakness_type = observations[pokemon_list.index(pokémon_name)][0]
+
+    weaknesses = [{"type": weakness_type, "value": "x2"}]
+    if weaknesses[0]["type"] == "No_weaknesses":
+        weaknesses = []
+    return weaknesses
+
+
+def predict_resistances(pokémon_name, cards_df, *args, **kwargs):
+    """Dummy baseline, returns the same resistances the last card of the same name."""
+
+    time_series_df = cards_df[["name", "releaseDate", "resistances"]]
+
+    # one observation per pokemon in our list
+    observations = []
+
+    for pokemon in pokemon_list:
+        mask = time_series_df["name"] == pokemon
+        df = time_series_df[mask]
+        observations.append(df.resistances.to_list())
+
+    resistance_type = observations[pokemon_list.index(pokémon_name)][0]
+
+    resistances = [{"type": resistance_type, "value": "x2"}]
+    if resistances[0]["type"] == "No_resistances":
+        resistances = []
+    return resistances
+
+
 def create_card(pokémon_name, rarity):
     """Takes a pokémon name and rarity level and generates a card. Returns a dict"""
     cards_df = get_card_data()
@@ -70,5 +112,9 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name, cards_df)
     card_dict["data"]["types"] = predict_types(pokémon_name, cards_df)
     card_dict["data"]["attacks"] = attacks_generator(pokémon_name, cards_df, rarity)
+    card_dict["data"]["weaknesses"] = predict_weaknesses(pokémon_name, cards_df, rarity)
+    card_dict["data"]["resistances"] = predict_resistances(
+        pokémon_name, cards_df, rarity
+    )
 
     return card_dict
