@@ -2,6 +2,7 @@ from pokemon_card_generator.data.pokemon_list import pokemon_list
 from pokemon_card_generator.data.card_data import get_card_data
 from pokemon_card_generator.data.base_card_dict import base_card_dict
 from pokemon_card_generator.models.attacks import *
+from pokemon_card_generator.data.scrap_data import get_stats
 
 
 def predict_hp(pokémon_name, cards_df, *args, **kwargs):
@@ -101,6 +102,27 @@ def predict_resistances(pokémon_name, cards_df, *args, **kwargs):
     return resistances
 
 
+def predict_weight(pokémon_name, cards_df, *args, **kwargs):
+    base_stats = get_stats()
+    weight = base_stats.Weight[pokemon_list.index(pokémon_name)]
+    return weight
+
+
+def predict_retreatCost(pokémon_name, cards_df, *args, **kwargs):
+    """Dummy baseline, returns a predict cost based on weight"""
+    base_stats = get_stats()
+    weight = base_stats.Weight[pokemon_list.index(pokémon_name)]
+    # remove " lbs" from weight
+    num_weight = float(weight[:-4])
+    if num_weight <= 2:
+        return []
+    if num_weight <= 100:
+        return ["Colorless"]
+    if num_weight <= 400:
+        return ["Colorless"] * 2
+    return ["Colorless"] * 3
+
+
 def create_card(pokémon_name, rarity):
     """Takes a pokémon name and rarity level and generates a card. Returns a dict"""
     cards_df = get_card_data()
@@ -116,5 +138,7 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["resistances"] = predict_resistances(
         pokémon_name, cards_df, rarity
     )
+    card_dict["data"]["weight"] = predict_weight(pokémon_name, cards_df)
+    card_dict["data"]["retreatCost"] = predict_retreatCost(pokémon_name, cards_df)
 
     return card_dict
