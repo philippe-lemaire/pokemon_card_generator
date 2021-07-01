@@ -154,8 +154,7 @@ def get_card_data():
     ]
 
     attack2_converted_cost = [
-        len(cost) if isinstance(cost, list) and len(cost) > 1 else cost
-        for cost in attack2_cost
+        len(cost) if isinstance(cost, list) else cost for cost in attack2_cost
     ]
 
     attack2_damage = [
@@ -186,8 +185,7 @@ def get_card_data():
     ]
 
     attack3_converted_cost = [
-        len(cost) if isinstance(cost, list) and len(cost) > 1 else cost
-        for cost in attack3_cost
+        len(cost) if isinstance(cost, list) else cost for cost in attack3_cost
     ]
 
     attack3_damage = [
