@@ -2,16 +2,11 @@ from pokemon_card_generator.data.pokemon_list import pokemon_list
 from pokemon_card_generator.data.card_data import get_card_data
 from pokemon_card_generator.data.base_card_dict import base_card_dict
 
-cards_df = get_card_data()
 
+def predict_hp(pokémon_name, cards_df, *args, **kwargs):
+    """Dummy baseline: A Pokémon's HP is the HP of its most recent card."""
 
-def predict_hp(pokémon_name, *args, **kwargs):
-    """Dummy baseline: A Pokémon's HP"""
-    # load the cards_df
-    # cards_df = get_card_data()
-    global cards_df
-    local_df = cards_df.copy()
-    time_series_df = local_df[["name", "releaseDate", "hp"]]
+    time_series_df = cards_df[["name", "releaseDate", "hp"]]
 
     # one observation per pokemon in our list
     observations = []
@@ -25,14 +20,10 @@ def predict_hp(pokémon_name, *args, **kwargs):
     return str(int(hp))
 
 
-def predict_evolvesFrom(pokémon_name, *args, **kwargs):
-    """Dummy baseline: checks last card and returns its evolves from"""
-    # load the cards_df
-    # cards_df = get_card_data()
-    global cards_df
-    local_df = cards_df.copy()
+def predict_evolvesFrom(pokémon_name, cards_df, *args, **kwargs):
+    """Dummy baseline, returns the first card with the same name's evolves from."""
 
-    time_series_df = local_df[["name", "releaseDate", "evolvesFrom"]]
+    time_series_df = cards_df[["name", "releaseDate", "evolvesFrom"]]
 
     # one observation per pokemon in our list
     observations = []
@@ -49,10 +40,32 @@ def predict_evolvesFrom(pokémon_name, *args, **kwargs):
     return evolvesFrom
 
 
+def predict_types(pokémon_name, cards_df, *args, **kwargs):
+    """Dummy baseline, returns the same type as the last card of the same name."""
+
+    time_series_df = cards_df[["name", "releaseDate", "types"]]
+
+    # one observation per pokemon in our list
+    observations = []
+
+    for pokemon in pokemon_list:
+        mask = time_series_df["name"] == pokemon
+        df = time_series_df[mask]
+        observations.append(df.types.to_list())
+
+    types = observations[pokemon_list.index(pokémon_name)][-1]
+
+    return [types]
+
+
 def create_card(pokémon_name, rarity):
+    """Takes a pokémon name and rarity level and generates a card. Returns a dict"""
+    cards_df = get_card_data()
+
     card_dict = base_card_dict.copy()
-    card_dict["data"]["hp"] = predict_hp(pokémon_name)
+    card_dict["data"]["hp"] = predict_hp(pokémon_name, cards_df)
     card_dict["data"]["name"] = pokémon_name
     card_dict["data"]["rarity"] = rarity
-    card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name)
+    card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name, cards_df)
+    card_dict["data"]["types"] = predict_types(pokémon_name, cards_df)
     return card_dict

@@ -9,7 +9,7 @@ base_card_dict = {
         "evolvesFrom": "",
         "abilities": [{"name": "", "text": "", "type": "Ability"}],
         "attacks": [
-            {"name": "", "cost": [], "convertedEnergyCost": 0, "damage": "", "text": ""}
+            {"name": "", "cost": [], "damage": "", "text": ""},
         ],
         "weaknesses": [{"type": "", "value": "×2"}],
         "resistances": [{"type": "", "value": "-20"}],
