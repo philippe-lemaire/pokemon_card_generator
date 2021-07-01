@@ -8,8 +8,7 @@ wheel>=0.29
 numpy==1.19.5
 pandas
 scikit-learn
-matplotlib.pyplot
-matplotlib.image
+matplotlib
 os
 
 # tests/linter
@@ -33,4 +32,6 @@ memoized-property
 termcolor
 
 # web
-flask
+streamlit
+requests
+PIL

@@ -4,6 +4,10 @@
 install_requirements:
 	@pip install -r requirements.txt
 
+# ----------------------------------
+#    LOCAL COMMANDS
+# ----------------------------------
+
 check_code:
 	@flake8 scripts/* pokemon_card_generator/*.py
 
@@ -53,3 +57,12 @@ pypi_test:
 
 pypi:
 	@twine upload dist/* -u $(PYPI_USERNAME)
+
+# ----------------------------------
+#         HEROKU COMMANDS
+# ----------------------------------
+
+streamlit:
+	-@streamlit run app.py
+
+
