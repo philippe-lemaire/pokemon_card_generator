@@ -40,6 +40,24 @@ def predict_evolvesFrom(pokémon_name, cards_df, *args, **kwargs):
     return evolvesFrom
 
 
+def predict_types(pokémon_name, cards_df, *args, **kwargs):
+    """Dummy baseline, returns the same type as the last card of the same name."""
+
+    time_series_df = cards_df[["name", "releaseDate", "types"]]
+
+    # one observation per pokemon in our list
+    observations = []
+
+    for pokemon in pokemon_list:
+        mask = time_series_df["name"] == pokemon
+        df = time_series_df[mask]
+        observations.append(df.types.to_list())
+
+    types = observations[pokemon_list.index(pokémon_name)][-1]
+
+    return [types]
+
+
 def create_card(pokémon_name, rarity):
     """Takes a pokémon name and rarity level and generates a card. Returns a dict"""
     cards_df = get_card_data()
@@ -49,4 +67,5 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["name"] = pokémon_name
     card_dict["data"]["rarity"] = rarity
     card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name, cards_df)
+    card_dict["data"]["types"] = predict_types(pokémon_name, cards_df)
     return card_dict
