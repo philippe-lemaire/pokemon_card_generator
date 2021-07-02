@@ -56,3 +56,30 @@ count_lines:
 
 start_api:
 	@uvicorn api.fast:app --reload
+
+
+### GOOGLE Cloud stuff
+
+# project id
+PROJECT_ID=pokemon-card-generator-wagon
+
+
+REGION=europe-west1
+
+set_project:
+	-@gcloud config set project ${PROJECT_ID}
+
+### Docker stuff
+
+DOCKER_IMAGE_NAME = pokemon_card_docker_image
+build_docker:
+	docker build -t eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} .
+
+run_docker_locally:
+	docker run -e PORT=8000 -p 8000:8000 eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
+
+deploy_docker:
+	docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
+
+run_docker_at_google:
+	gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region europe-west1
