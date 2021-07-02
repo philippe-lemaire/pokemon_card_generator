@@ -62,14 +62,16 @@ start_api:
 
 # project id
 PROJECT_ID=pokemon-card-generator-wagon
-
-
 REGION=europe-west1
+
+enable_registry:
+	gcloud services enable containerregistry.googleapis.com --project=${PROJECT_ID}
 
 set_project:
 	-@gcloud config set project ${PROJECT_ID}
 
 ### Docker stuff
+
 
 DOCKER_IMAGE_NAME = pokemon_card_docker_image
 build_docker:
@@ -82,4 +84,4 @@ deploy_docker:
 	docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
 
 run_docker_at_google:
-	gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region europe-west1
+	gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION}
