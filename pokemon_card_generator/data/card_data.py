@@ -102,7 +102,6 @@ def get_card_data():
         "number",
         "ancientTrait",
         "artist",
-        "nationalPokedexNumbers",
         "legalities",
         "images",
         "tcgplayer",

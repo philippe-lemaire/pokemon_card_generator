@@ -125,6 +125,11 @@ def predict_retreatCost(pokémon_name, cards_df, *args, **kwargs):
     return ["Colorless"] * 3
 
 
+def get_num(pokémon_name, cards_df, *args, **kwargs):
+    """reads the national Pokedex number from df_cards"""
+    return cards_df[cards_df.name == pokémon_name].nationalPokedexNumbers.to_list()[0]
+
+
 def create_card(pokémon_name, rarity):
     """Takes a pokémon name and rarity level and generates a card. Returns a dict"""
     cards_df = get_card_data()
@@ -142,6 +147,8 @@ def create_card(pokémon_name, rarity):
         pokémon_name, cards_df, rarity
     )
     card_dict["data"]["weight"] = predict_weight(pokémon_name, cards_df)
+
     card_dict["data"]["retreatCost"] = predict_retreatCost(pokémon_name, cards_df)
     card_dict["data"]["flavorText"] = generate_flavor(pokémon_name)
+    card_dict["data"]["nationalPokedexNumbers"] = get_num(pokémon_name, cards_df)
     return card_dict
