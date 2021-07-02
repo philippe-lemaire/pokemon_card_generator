@@ -8,7 +8,7 @@ wheel>=0.29
 numpy==1.19.5
 pandas
 scikit-learn
-matplotlib
+matplotlib==3.2.2
 
 # tests/linter
 coverage
