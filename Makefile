@@ -44,12 +44,15 @@ count_lines:
 # ----------------------------------
 #      UPLOAD PACKAGE TO PYPI
 # ----------------------------------
-PYPI_USERNAME=<AUTHOR>
-build:
-	@python setup.py sdist bdist_wheel
+#PYPI_USERNAME=<AUTHOR>
+#build:
+#	@python setup.py sdist bdist_wheel
+#
+#pypi_test:
+#	@twine upload -r testpypi dist/* -u $(PYPI_USERNAME)
+#
+#pypi:
+#	@twine upload dist/* -u $(PYPI_USERNAME)
 
-pypi_test:
-	@twine upload -r testpypi dist/* -u $(PYPI_USERNAME)
-
-pypi:
-	@twine upload dist/* -u $(PYPI_USERNAME)
+start_api:
+	@uvicorn api.fast:app --reload
