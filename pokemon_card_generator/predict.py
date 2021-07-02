@@ -104,11 +104,12 @@ def predict_resistances(pokémon_name, cards_df, *args, **kwargs):
     return resistances
 
 
-def get_weight_and_height(pokémon_name, cards_df, *args, **kwargs):
+def get_weight_and_height_and_cat(pokémon_name, cards_df, *args, **kwargs):
     base_stats = get_stats()
     weight = base_stats.Weight[pokemon_list.index(pokémon_name)]
     height = base_stats.Height[pokemon_list.index(pokémon_name)]
-    return weight, height
+    cat = base_stats.Category[pokemon_list.index(pokémon_name)] + " Pokémon"
+    return weight, height, cat
 
 
 def predict_retreatCost(pokémon_name, cards_df, *args, **kwargs):
@@ -151,10 +152,11 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["retreatCost"] = predict_retreatCost(pokémon_name, cards_df)
     card_dict["data"]["flavorText"] = generate_flavor(pokémon_name)
 
-    # get weight, height, pokedex number
-    weight, height = get_weight_and_height(pokémon_name, cards_df)
+    # get weight, height, pokedex number and family
+    weight, height, cat = get_weight_and_height_and_cat(pokémon_name, cards_df)
     card_dict["data"]["weight"] = weight
     card_dict["data"]["height"] = height
+    card_dict["data"]["category"] = cat
     card_dict["data"]["nationalPokedexNumbers"] = get_num(pokémon_name, cards_df)
 
     return card_dict
