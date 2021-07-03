@@ -1,107 +1,17 @@
+import pokemon_card_generator
 from pokemon_card_generator.data.pokemon_list import pokemon_list
 from pokemon_card_generator.data.card_data import get_card_data
 from pokemon_card_generator.data.base_card_dict import base_card_dict
 from pokemon_card_generator.models.attacks import *
 from pokemon_card_generator.models.abilities import *
+from pokemon_card_generator.models.hp import predict_hp
+from pokemon_card_generator.models.type import predict_types
+from pokemon_card_generator.models.evolves_from import predict_evolvesFrom
+from pokemon_card_generator.models.resistances import predict_resistances
+from pokemon_card_generator.models.weaknesses import predict_weaknesses
+from pokemon_card_generator.models.retreat_cost import predict_retreatCost
 from pokemon_card_generator.data.scrap_data import get_stats
 from pokemon_card_generator.models.flavor_text import generate_flavor
-
-
-def predict_hp(pokémon_name, cards_df, *args, **kwargs):
-    """Dummy baseline: A Pokémon's HP is the HP of its most recent card."""
-
-    time_series_df = cards_df[["name", "releaseDate", "hp"]]
-
-    # one observation per pokemon in our list
-    observations = []
-
-    for pokemon in pokemon_list:
-        mask = time_series_df["name"] == pokemon
-        df = time_series_df[mask]
-        observations.append(df.hp.to_list())
-
-    hp = observations[pokemon_list.index(pokémon_name)][-1]
-    return str(int(hp))
-
-
-def predict_evolvesFrom(pokémon_name, cards_df, *args, **kwargs):
-    """Dummy baseline, returns the first card with the same name's evolves from."""
-
-    time_series_df = cards_df[["name", "releaseDate", "evolvesFrom"]]
-
-    # one observation per pokemon in our list
-    observations = []
-
-    for pokemon in pokemon_list:
-        mask = time_series_df["name"] == pokemon
-        df = time_series_df[mask]
-        observations.append(df.evolvesFrom.to_list())
-
-    evolvesFrom = observations[pokemon_list.index(pokémon_name)][0]
-    if isinstance(evolvesFrom, float):
-        evolvesFrom = ""
-
-    return evolvesFrom
-
-
-def predict_types(pokémon_name, cards_df, *args, **kwargs):
-    """Dummy baseline, returns the same type as the last card of the same name."""
-
-    time_series_df = cards_df[["name", "releaseDate", "types"]]
-
-    # one observation per pokemon in our list
-    observations = []
-
-    for pokemon in pokemon_list:
-        mask = time_series_df["name"] == pokemon
-        df = time_series_df[mask]
-        observations.append(df.types.to_list())
-
-    types = observations[pokemon_list.index(pokémon_name)][-1]
-
-    return [types]
-
-
-def predict_weaknesses(pokémon_name, cards_df, *args, **kwargs):
-    """Dummy baseline, returns the same type as the last card of the same name."""
-
-    time_series_df = cards_df[["name", "releaseDate", "weaknesses"]]
-
-    # one observation per pokemon in our list
-    observations = []
-
-    for pokemon in pokemon_list:
-        mask = time_series_df["name"] == pokemon
-        df = time_series_df[mask]
-        observations.append(df.weaknesses.to_list())
-
-    weakness_type = observations[pokemon_list.index(pokémon_name)][0]
-
-    weaknesses = [{"type": weakness_type, "value": "x2"}]
-    if weaknesses[0]["type"] == "No_weaknesses":
-        weaknesses = []
-    return weaknesses
-
-
-def predict_resistances(pokémon_name, cards_df, *args, **kwargs):
-    """Dummy baseline, returns the same resistances the last card of the same name."""
-
-    time_series_df = cards_df[["name", "releaseDate", "resistances"]]
-
-    # one observation per pokemon in our list
-    observations = []
-
-    for pokemon in pokemon_list:
-        mask = time_series_df["name"] == pokemon
-        df = time_series_df[mask]
-        observations.append(df.resistances.to_list())
-
-    resistance_type = observations[pokemon_list.index(pokémon_name)][0]
-
-    resistances = [{"type": resistance_type, "value": "x2"}]
-    if resistances[0]["type"] == "No_resistances":
-        resistances = []
-    return resistances
 
 
 def get_weight_and_height_and_cat(pokémon_name, cards_df, *args, **kwargs):
@@ -110,21 +20,6 @@ def get_weight_and_height_and_cat(pokémon_name, cards_df, *args, **kwargs):
     height = base_stats.Height[pokemon_list.index(pokémon_name)]
     cat = base_stats.Category[pokemon_list.index(pokémon_name)] + " Pokémon"
     return weight, height, cat
-
-
-def predict_retreatCost(pokémon_name, cards_df, *args, **kwargs):
-    """Dummy baseline, returns a predict cost based on weight"""
-    base_stats = get_stats()
-    weight = base_stats.Weight[pokemon_list.index(pokémon_name)]
-    # remove " lbs" from weight
-    num_weight = float(weight[:-4])
-    if num_weight <= 2:
-        return []
-    if num_weight <= 100:
-        return ["Colorless"]
-    if num_weight <= 400:
-        return ["Colorless"] * 2
-    return ["Colorless"] * 3
 
 
 def get_num(pokémon_name, cards_df, *args, **kwargs):
