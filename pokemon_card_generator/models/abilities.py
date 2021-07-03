@@ -77,6 +77,6 @@ def abilitys_generator(pokémon_name, cards_df, rarity):
 
         df_abilitys = df_abilitys.iloc[rng - 1, :]
         result.append(df_abilitys.to_dict())
-        return result
+        return result, True
     else:
-        return result
+        return result, False

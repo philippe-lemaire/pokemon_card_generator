@@ -53,7 +53,7 @@ def atk_prediction(pokémon_name, cards_df, rarity):
         return df_atk
 
 
-def attacks_generator(pokémon_name, cards_df, rarity):
+def attacks_generator(pokémon_name, cards_df, rarity, ability_presence):
     """Predict attacks dammage according name and rarity"""
 
     dtn1 = {
@@ -91,6 +91,10 @@ def attacks_generator(pokémon_name, cards_df, rarity):
         ["attack3_name", "attack3_cost", "attack3_damage", "attack3_text"]
     ]
     df_atk_3 = df_atk_3.rename(dtn3, axis="index")
-    liste_of_df_atk = [df_atk_1, df_atk_2, df_atk_3]
+    # use 2 attacks at most
+    liste_of_df_atk = [df_atk_1, df_atk_2]
+    # if there is no ability, then we can add a third attack, if any
+    if not ability_presence:
+        liste_of_df_atk.append(df_atk_3)
     result = [item.to_dict() for item in liste_of_df_atk if item["name"] != ""]
     return result

@@ -142,8 +142,13 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["rarity"] = rarity
     card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name, cards_df)
     card_dict["data"]["types"] = predict_types(pokémon_name, cards_df)
-    card_dict["data"]["attacks"] = attacks_generator(pokémon_name, cards_df, rarity)
-    card_dict["data"]["abilities"] = abilitys_generator(pokémon_name, cards_df, rarity)
+    card_dict["data"]["abilities"], ability_presence = abilitys_generator(
+        pokémon_name, cards_df, rarity
+    )
+    card_dict["data"]["attacks"] = attacks_generator(
+        pokémon_name, cards_df, rarity, ability_presence
+    )
+
     card_dict["data"]["weaknesses"] = predict_weaknesses(pokémon_name, cards_df, rarity)
     card_dict["data"]["resistances"] = predict_resistances(
         pokémon_name, cards_df, rarity
