@@ -20,6 +20,8 @@ joblib
 
 # web
 flask
+flask-wtf
+Flask-Bootstrap4
 
 # Openai for text models
 openai
