@@ -51,7 +51,7 @@ def create_card(pokémon_name, rarity):
     )
 
     card_dict["data"]["retreatCost"] = predict_retreatCost(pokémon_name, cards_df)
-    card_dict["data"]["flavorText"] = generate_flavor(pokémon_name)
+    card_dict["data"]["flavorText"] = generate_flavor(pokémon_name, cards_df)
 
     # get weight, height, pokedex number and family
     weight, height, cat = get_weight_and_height_and_cat(pokémon_name, cards_df)
