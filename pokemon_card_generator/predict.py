@@ -33,7 +33,7 @@ def create_card(pokémon_name, rarity):
     cards_df = get_card_data()
 
     card_dict = base_card_dict.copy()
-    card_dict["data"]["hp"] = predict_hp(pokémon_name, cards_df)
+    card_dict["data"]["hp"] = predict_hp(pokémon_name, rarity, cards_df)
     card_dict["data"]["name"] = pokémon_name
     card_dict["data"]["rarity"] = rarity
     card_dict["data"]["evolvesFrom"] = predict_evolvesFrom(pokémon_name, cards_df)
