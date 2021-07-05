@@ -50,7 +50,7 @@ def create_card_data_pickle():
         try:
             weaknesses.append(weakness[0]["type"])
         except:
-            types.append(weakness)
+            weaknesses.append(weakness)
 
     cards_df.weaknesses = pd.Series(weaknesses)
 
@@ -383,7 +383,7 @@ def create_card_data_pickle():
     # set the path
     cards_df_pickle_path = path.join(pickles_path, "cards_df")
     # make the folder
-    makedirs(cards_df_pickle_path)
+    makedirs(cards_df_pickle_path, exist_ok=True)
     # save the pickle
     cards_df.to_pickle(path.join(cards_df_pickle_path, "cards_df.pickle"))
     print(f"Pickle saved in {cards_df_pickle_path}")
