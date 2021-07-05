@@ -71,7 +71,7 @@ set_project:
 	-@gcloud config set project ${PROJECT_ID}
 
 ### Docker stuff
-
+SERVICE = pokecardgenerator
 
 DOCKER_IMAGE_NAME = pokemon_card_docker_image
 docker_build_image:
@@ -84,4 +84,4 @@ docker_deploy:
 	docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
 
 docker_run_at_google:
-	gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION}
+	gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION} --service ${SERVICE}

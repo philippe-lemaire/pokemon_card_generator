@@ -340,11 +340,17 @@ def create_card_data_pickle():
         "Special Delivery ",
         "Dusk Mane ",
         "Ultra ",
+        "Team ",
+        "Buried ",
+        " Bros.",
         # rotom is fun
         "Mow ",
         "Heat ",
         "Wash ",
         "Frost ",
+        "Cool ",
+        "Mow ",
+        "Fan ",
         # forme
         " Speed Forme",
         " Normal Forme",
