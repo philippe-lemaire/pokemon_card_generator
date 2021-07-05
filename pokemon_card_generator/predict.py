@@ -12,6 +12,7 @@ from pokemon_card_generator.models.weaknesses import predict_weaknesses
 from pokemon_card_generator.models.retreat_cost import predict_retreatCost
 from pokemon_card_generator.data.scrap_data import get_stats
 from pokemon_card_generator.models.flavor_text import generate_flavor
+from pokemon_card_generator.models.get_illustration import get_illustration
 
 
 def get_weight_and_height_and_cat(pokémon_name, cards_df, *args, **kwargs):
@@ -58,5 +59,6 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["height"] = height
     card_dict["data"]["category"] = cat
     card_dict["data"]["nationalPokedexNumbers"] = get_num(pokémon_name, cards_df)
+    card_dict["data"]["illustration"] = get_illustration(pokémon_name, cards_df)
 
     return card_dict
