@@ -14,22 +14,14 @@ def index():
     )
 
 
-# @app.route("/result", methods=["POST"])
-# def result():
-#     result = request.form
-#     pokemon_selected = result["pokemon_selected"]
-#     rarity = result["rarity"]
-#     return render_template(
-#         "result.html", pokemon_selected=pokemon_selected, rarity=rarity
-#     )
-
-
-@app.route("/result1", methods=["POST"])
-def result1():
-    pokemon_selected = request.form["pokemon_selected"]
-    rarity = request.form["rarity"]
+@app.route("/result", methods=["POST"])
+def result():
+    result = request.form
+    pokemon_selected = result["pokemon_selected"]
+    rarity = result["rarity"]
     return render_template(
-        "result1.html", pokemon_selected=pokemon_selected, rarity=rarity
+        "result.html", pokemon_selected=pokemon_selected, rarity=rarity
+    )
 
 
 # address of the api prediction
@@ -41,7 +33,7 @@ api = "https://pokecardgenerator-tybpdn52ha-ew.a.run.app/create_card"
 # get prediction
 # params = dict(pokémon_name=pokemon_selected, rarity=rarity_selected)
 # response = requests.get(url_api, params=params)
-response = requests.get(url2)
+response = requests.get(url_api)
 prediction = response.json()
 
 # input from prediction
