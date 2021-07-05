@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
+import requests
 
 app = Flask(__name__)
 
@@ -31,5 +32,15 @@ def index():
     # 'form' is the variable name used in this template: index.html
     form = Form()
     message = ""
-
+    if form.validate_on_submit():
+        pokémon_name = form.pokémon_name.data
+        rarity = form.rarity.data
+        base_api_url = "https://pokecardgenerator-tybpdn52ha-ew.a.run.app/create_card"
+        params = {"pokémon_name": pokémon_name, "rarity": rarity}
+        card_data = requests.get(url=base_api_url, params=params).json()
+        return render_template(
+            "card.html", form=form, message=message, card_data=card_data
+        )
+    else:
+        message = "Please select a Pokémon and a rarity level."
     return render_template("index.html", form=form, message=message)
