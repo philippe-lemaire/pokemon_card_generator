@@ -84,4 +84,4 @@ docker_deploy:
 	docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
 
 docker_run_at_google:
-	gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION} --service ${SERVICE}
+	gcloud run deploy ${SERVICE} --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION}
