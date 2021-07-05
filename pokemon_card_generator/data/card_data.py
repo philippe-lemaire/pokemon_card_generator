@@ -1,11 +1,11 @@
 import csv
 import pandas as pd
 from pokemon_card_generator.data.set_data import get_sets
-from os import walk, path
+from os import walk, path, makedirs
 import string
 
 
-def get_card_data():
+def create_card_data_pickle():
     """Concatenates all the pickles in 'raw_data/pickles' and returns a dataframe.
     Usage: from pokemon_card_generator.data import card_data; card_df = card_data.get_card_data()"""
     # list all the files in data
@@ -380,5 +380,19 @@ def get_card_data():
         return s
 
     cards_df.name = cards_df.name.apply(lambda x: clean_trailing(x))
+    # set the path
+    cards_df_pickle_path = path.join(pickles_path, "cards_df")
+    # make the folder
+    makedirs(cards_df_pickle_path)
+    # save the pickle
+    cards_df.to_pickle(path.join(cards_df_pickle_path, "cards_df.pickle"))
+    print(f"Pickle saved in {cards_df_pickle_path}")
+    return None
 
+
+def get_card_data():
+    """Just opens the pickle and returns the dataframe"""
+    two_dirs_up = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
+    pickle_path = path.join(two_dirs_up, "raw_data/pickles/cards_df")
+    cards_df = pd.read_pickle(path.join(pickle_path, "cards_df.pickle"))
     return cards_df
