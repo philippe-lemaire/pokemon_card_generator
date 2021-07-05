@@ -16,9 +16,10 @@ def get_illustration(pokémon_name, cards_df, *args, **kwargs):
     pokémon_num = str(pokémon_num)
 
     # set the path to the images
-    cropped_imgs_path = (
-        "/home/phil/code/pokemon_card_generator/raw_data/img/per_pokemon"
-    )
+
+    three_dirs_up = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
+
+    cropped_imgs_path = path.join(three_dirs_up, "raw_data/img/per_pokemon")
     this_pok_img_path = path.join(cropped_imgs_path, pokémon_num)
 
     # select a random image
