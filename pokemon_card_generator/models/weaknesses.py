@@ -2,7 +2,7 @@ from pokemon_card_generator.data.pokemon_list import pokemon_list
 
 
 def predict_weaknesses(pokémon_name, cards_df, *args, **kwargs):
-    """Dummy baseline, returns the same type as the last card of the same name."""
+    """Dummy baseline, returns the same type as the first card of the same name."""
 
     time_series_df = cards_df[["name", "releaseDate", "weaknesses"]]
 
