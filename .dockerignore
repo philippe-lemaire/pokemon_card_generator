@@ -2,6 +2,6 @@
 .git
 .cache
 
-# ignore raw_data/img
-raw_data/img
+# ignore raw_data/img/per_set
+raw_data/img/per_set
 

@@ -74,14 +74,14 @@ set_project:
 
 
 DOCKER_IMAGE_NAME = pokemon_card_docker_image
-build_docker:
+docker_build_image:
 	docker build -t eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} .
 
-run_docker_locally:
+docker_run_locally:
 	docker run -e PORT=8000 -p 8000:8000 eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
 
-deploy_docker:
+docker_deploy:
 	docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
 
-run_docker_at_google:
+docker_run_at_google:
 	gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION}
