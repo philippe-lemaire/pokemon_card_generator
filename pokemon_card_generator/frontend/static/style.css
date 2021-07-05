@@ -1,0 +1,129 @@
+@font-face {
+  src: url('https://mdn.mozillademos.org/files/16044/AmstelvarAlpha-VF.ttf');
+  font-family:'AmstelvarAlpha';
+  font-style: normal;
+}
+
+/* Container holding the image and the text */
+.container {
+  width: 1000px;
+  margin: auto auto;
+  height: 100%;
+  position: relative;
+}
+
+.background_card {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.ability {
+  position: absolute;
+  border: none;
+  top: 550px;
+  left: 50px;
+}
+.corpus1 {
+  position: absolute;
+  border: none;
+  top: 550px;
+  left: 250px;
+  font-size: 20px;
+}
+.corpus2 {
+  position: absolute;
+  border: none;
+  top: 35px;
+  left: 140px;
+}
+.rarity {
+  position: absolute;
+  border: none;
+  top: 750px;
+  left: 140px;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
+  color: rgb(38, 0, 255) !important;
+  font: 2rem 'AmstelvarAlpha', sans-serif;
+  font-size: 60px;
+}
+
+h2 {
+  position: relative;
+  text-align: center;
+  color: rgb(147, 128, 250) !important;
+  font: 2rem 'AmstelvarAlpha', sans-serif;
+  font-size: 40px;
+}
+
+.menu_deroulant {
+  text-align: center;
+  color: rgb(38, 0, 255) !important;
+  font: 2rem 'AmstelvarAlpha', sans-serif;
+  font-size: 28px;
+}
+
+.radio-label {
+  display: inline-block;
+   vertical-align: top;
+   margin-right: 3%;
+  text-align: center;
+  color: rgb(38, 0, 255) !important;
+  font-size: 35px;
+}
+.radio-input {
+  display: inline-block;
+   vertical-align: top;
+   border: 0px;
+   height: 3em;
+}
+
+fieldset {
+   text-align: center;
+}
+
+.button {
+  margin: auto;
+  color: rgb(38, 0, 255) !important;
+  font: 2rem 'AmstelvarAlpha', sans-serif;
+  font-size: 40px;
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

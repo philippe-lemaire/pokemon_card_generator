@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <center>
+        <h1>Pokémon Card Generator</h1>
+
+        <h2>Select Pokémon
+
+
+            <form action="http://localhost:5000/result" method="post">
+                <label>Pokemon Name</label> : <input type="text" name="pokemon_selected" />
+                <label>Rarity</label> : <input type="text" name="rarity" />
+
+                <!-- <form action="http://localhost:5000/result1" name="formulaire" method="post">
+                <label>Pokemon Name</label> : <select class="menu_deroulant" pokemon_selected=pokemon_list
+                    action="http://localhost:5000/result1" method="post">
+                    {% for pokemon_name in pokemon_list %}
+                    <option value="{{ pokemon_selected }}" SELECTED>{{ pokemon_name }}</option>"
+                    {% endfor %}
+                </select>
+                <label>Rarity</label> : <input type="text" name="rarity" />
+
+                <br>
+                <select class="menu_deroulant" pokemon_selected=pokemon_list action="http://localhost:5000/result"
+                    method="post">
+                    {% for pokemon_name in pokemon_list %}
+                    <option value="pokemon_selected" SELECTED>{{ pokemon_name }}</option>"
+                    {% endfor %}
+                </select>
+        </h2>
+
+        <h2>Choose a rarity</h2>
+        <input class="radio-input" type="radio" name="rarity" value="1" />
+        <label class="radio-label" action="http://localhost:5000/result" method="post">common</label>
+        <input class="radio-input" type="radio" name="rarity" value="2" />
+        <label class="radio-label" action="http://localhost:5000/result" method="post">uncommon</label>
+        <input class="radio-input" type="radio" name="rarity" value="3" />
+        <label class="radio-label" action="http://localhost:5000/result" method="post">promo</label>
+        <input class="radio-input" type="radio" name="rarity" value="4" />
+        <label class="radio-label" action="http://localhost:5000/result" method="post">rare</label>
+        <input class="radio-input" type="radio" name="rarity" value="5" />
+        <label class="radio-label" action="http://localhost:5000/result" method="post">shiny</label> -->
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Generate card">
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+
+    </center>
+
+</body>
+
+
+</html>
