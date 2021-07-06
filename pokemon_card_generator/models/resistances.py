@@ -16,7 +16,7 @@ def predict_resistances(pokémon_name, cards_df, *args, **kwargs):
 
     resistance_type = observations[pokemon_list.index(pokémon_name)][0]
 
-    resistances = [{"type": resistance_type, "value": "x2"}]
+    resistances = [{"type": resistance_type, "value": "-30"}]
     if resistances[0]["type"] == "No_resistances":
         resistances = []
     return resistances
