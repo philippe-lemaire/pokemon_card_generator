@@ -35,31 +35,82 @@ Pokémon Card Generator - Le Wagon 2021
                     <img id="card" src="../static/images/cleaned_cards/{{card_data.data.types[0].lower()}}.png" />
                     <p id="name">{{card_data.data.name}}</p>
                     <p id="hp"><span style="font-size: 1.5rem"><strong>HP</strong></span>{{card_data.data.hp}}</p>
-                    <img id="illustration" src="static/images/{{card_data.data.illustration}}" />
-                    {% if card_data.data.abilities|length >0 %}
-                    <img id="ability" src="../static/images/card_icons/ability.png" />
-                    <p id="ability_name">{{card_data.data.abilities[0].name}}</p>
-                    <p id="ability_text">{{card_data.data.abilities[0].text}}</p>
-                    {% endif %}
+                    <img id="illustration" style="height: 385px" src="static/images/{{card_data.data.illustration}}" />
 
-                    {% for attack in card_data.data.attacks %}
-                    <p>cost: {{attack.cost}} name: {{attack.name}} text: {{attack.text}} dmg: {{attack.damage}}</p>
-                    {% endfor%}
+                    <div class="centered">
+                        <p id="category">NO. {{card_data.data.nationalPokedexNumbers[0]}}
+                            {{card_data.data.category}} HT:
+                            {{card_data.data.height}} WT: {{card_data.data.weight}}</p>
+                    </div>
+                    <div id="attacks">
+                        <table id="attack_table">
+                            <tr>
+                                {% if card_data.data.abilities|length >0 %}
+                                <td><img id="ability" src="../static/images/card_icons/ability.png" /></td>
+                                <td colspan="2">
+                                    <p id="ability_name">{{card_data.data.abilities[0].name}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <p id="ability_text">{{card_data.data.abilities[0].text}}</p>
+                                </td>
+                            </tr>
+                            {% endif %}
 
+                            {% for attack in card_data.data.attacks %}
+                            <tr>
+                                <td>
+                                    {% for mana in card_data.data.attacks[0].cost %}
+                                    <img width=40 src="../static/images/card_icons/{{mana.lower()}}_logo.png" />
+                                    {% endfor%}
+                                </td>
+                                <td>
+                                    <p id="attack_name_and_damage">{{attack.name}}</p>
+                                </td>
+                                <td>
+                                    <p id="attack_name_and_damage">{{attack.damage}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <p id="attack_text"><span
+                                            style="font-size: 1.5rem; top: 50px"></span>{{attack.text}}</span></p>
+                                </td>
+                            </tr>
+                            {% endfor%}
+                        </table>
+                    </div>
                     {% if card_data.data.weaknesses|length >0 %}
-                    <p>Weakness: {{card_data.data.weaknesses.text}}</p>
+                    <p id="weakness"><img width=20
+                            src="../static/images/card_icons/{{card_data.data.weaknesses[0].type.lower()}}_logo.png" />
+                        {{card_data.data.weaknesses[0].value}}</p>
                     {% endif %}
 
                     {% if card_data.data.resistances|length >0 %}
-                    <p>Resistances: {{card_data.data.resistances}}</p>
+                    <p id="resistance"><img width=20
+                            src="../static/images/card_icons/{{card_data.data.resistances[0].type.lower()}}_logo.png" />
+                        {{card_data.data.resistances[0].value}}</p>
                     {% endif %}
 
-                    <p>Retreat cost: {{card_data.data.retreatCost}}</p>
-                    <p><strong>Flavor text: {{card_data.data.flavorText}}</strong></p>
+                    {% if card_data.data.retreatCost|length >0 %}
+                    <p id="retreatCost">
+                        {% for mana in card_data.data.retreatCost %}
+                        <img width=20 src="../static/images/card_icons/{{mana.lower()}}_logo.png" />
+                        {% endfor%}
+                    </p>
+                    {% endif %}
 
-                    <p>weight: {{card_data.data.weight}}</p>
-                    <p>height: {{card_data.data.height}}</p>
-                    <p>category: {{card_data.data.category}}</p>
+                    <div id="flavorText">
+                        <p>{{card_data.data.flavorText}}</p>
+                    </div>
+                    <div id="illustrator">
+                        <p>Illus. LeWagonLyon</p>
+                    </div>
+
+                    <img id="logo"
+                        src="https://dwj199mwkel52.cloudfront.net/assets/lewagon-logo-square-b6124eb974be375884558e4464efce48a9b5664f18422768156364363ecdd1fc.png" />
+
                 </div>
             </div>
         </div>

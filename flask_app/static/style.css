@@ -11,6 +11,7 @@
   /* centr */
   margin-right: auto;
   margin-left: auto;
+  width: 100%;
 }
 
 #card
@@ -20,31 +21,21 @@ position:absolute;
 }
 #ability
 {
-position:relative;
 z-index: 20;
-left: 49px;
-top: 455px;
 }
 
 #ability_name
 {
-position:absolute;
 z-index: 20;
-left: 252px;
-top: 421px;
 font-weight: bold;
 color: #9c1114;
 font-size:3rem;
 }
 
-#ability_text
+#ability_text, #attack_text
 {
-position:absolute;
 z-index: 20;
-left: 72px;
-top: 416px;
 font-size: 2.1rem;
-padding-right: 70px;
 }
 
 #name
@@ -70,7 +61,103 @@ padding-right: 70px;
 #illustration
 {
   position: absolute;
-  z-index: -1;
+  z-index: -20;
   left: 73px;
-  top: 101px;
+  top: 100px;
+}
+
+
+#category {
+  font-size: 1.5rem;
+  position: absolute;
+  z-index: 40;
+  top: 490px;
+  width: 540px;
+  color: #272727;
+}
+
+.centered {
+  margin: 0 auto;
+  width: 50%;
+}
+
+#attacks {
+  position: absolute;
+  z-index: 50;
+  left: 69px;
+}
+
+#attack_table {
+  position: absolute;
+  z-index: 50;
+  left: 0px;
+  top: 550px;
+  width: 600px;
+}
+
+#attack_name_and_damage {
+  font-size:3.5rem;
+}
+
+td, tr, table {
+  border: 0px solid black;
+}
+
+#flavorText {
+  position: absolute;
+  z-index: 50;
+  left: 259px;
+  top: 920px;
+  width: 450px;
+  font-size: 1.6rem;
+  text-align: right;
+}
+
+#illustrator {
+  position: absolute;
+  z-index: 50;
+  left: 64px;
+  top: 931px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+#logo {
+  position: absolute;
+  z-index: 50;
+  left: 60px;
+  top: 955px;
+  width: 30px;
+}
+
+
+#weakness {
+  position: absolute;
+  z-index: 50;
+  left: -75px;
+  top: 884px;
+  width: 250px;
+  font-size: 1.6rem;
+  text-align: right;
+  font-weight: bold;
+}
+
+#resistance {
+  position: absolute;
+  z-index: 50;
+  left: 24px;
+  top: 884px;
+  width: 350px;
+  font-size: 1.6rem;
+  text-align: right;
+  font-weight: bold;
+}
+
+#retreatCost {
+  position: absolute;
+  z-index: 50;
+  left: 539px;
+  top: 884px;
+  font-size: 1.6rem;
+  text-align: right;
 }
