@@ -3,6 +3,7 @@
 
 {% block styles %}
 {{ super() }}
+<link href="static/style.css" rel="stylesheet">
 <style>
     body {
         background: #FFF;
@@ -21,46 +22,47 @@ Pokémon Card Generator - Le Wagon 2021
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-
             <h1 class="pt-5 pb-2">Welcome to the Pokémon Card Generator!</h1>
-
-            <p class="lead">This is a coding bootcamp project, and in no way, shape or form endorsed by Nintendo™.</p>
-
+            <p class="lead">This is a coding bootcamp project, and in no way, shape or form endorsed by Nintendo™.
+            </p>
             {{ wtf.quick_form(form) }}
-
             <p class="pt-5"><strong>{{ message }}</strong></p>
+            <br>
+            <br>
 
+            <div class='globalclass'>
+                <div class="containeur">
+                    <img id="card" src="../static/images/cleaned_cards/{{card_data.data.types[0].lower()}}.png" />
+                    <p id="name">{{card_data.data.name}}</p>
+                    <p id="hp"><span style="font-size: 1.5rem"><strong>HP</strong></span>{{card_data.data.hp}}</p>
+                    <img id="illustration" src="static/images/{{card_data.data.illustration}}" />
+                    {% if card_data.data.abilities|length >0 %}
+                    <img id="ability" src="../static/images/card_icons/ability.png" />
+                    <p id="ability_name">{{card_data.data.abilities[0].name}}</p>
+                    <p id="ability_text">{{card_data.data.abilities[0].text}}</p>
+                    {% endif %}
 
-            <p>{{card_data.data.name}}</p>
-            <p>{{card_data.data.hp}}</p>
-            {% if card_data.data.abilities|length >0 %}
-            <p>{{card_data.data.abilities}}[0].text</p>
-            {% endif %}
+                    {% for attack in card_data.data.attacks %}
+                    <p>cost: {{attack.cost}} name: {{attack.name}} text: {{attack.text}} dmg: {{attack.damage}}</p>
+                    {% endfor%}
 
-            <p>Type : {{card_data.data.types[0]}}</p>
-            {% for attack in card_data.data.attacks %}
-            <p>cost: {{attack.cost}} name: {{attack.name}} text: {{attack.text}} dmg: {{attack.damage}}</p>
-            {% endfor%}
+                    {% if card_data.data.weaknesses|length >0 %}
+                    <p>Weakness: {{card_data.data.weaknesses.text}}</p>
+                    {% endif %}
 
-            {% if card_data.data.weaknesses|length >0 %}
-            <p>Weakness: {{card_data.data.weaknesses.text}}</p>
-            {% endif %}
+                    {% if card_data.data.resistances|length >0 %}
+                    <p>Resistances: {{card_data.data.resistances}}</p>
+                    {% endif %}
 
-            {% if card_data.data.resistances|length >0 %}
-            <p>Resistances: {{card_data.data.resistances}}</p>
-            {% endif %}
+                    <p>Retreat cost: {{card_data.data.retreatCost}}</p>
+                    <p><strong>Flavor text: {{card_data.data.flavorText}}</strong></p>
 
-            <p>Retreat cost: {{card_data.data.retreatCost}}</p>
-            <p><strong>Flavor text: {{card_data.data.flavorText}}</strong></p>
-
-            <p>weight: {{card_data.data.weight}}</p>
-            <p>height: {{card_data.data.height}}</p>
-            <p>category: {{card_data.data.category}}</p>
-            <p>illustration relative path {{card_data.data.illustration}}</p>
-
-
+                    <p>weight: {{card_data.data.weight}}</p>
+                    <p>height: {{card_data.data.height}}</p>
+                    <p>category: {{card_data.data.category}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

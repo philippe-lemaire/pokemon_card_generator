@@ -3,6 +3,7 @@
 
 {% block styles %}
 {{ super() }}
+<link href="static/style.css" rel="stylesheet">
 <style>
     body {
         background: #FFF;
@@ -29,9 +30,6 @@ Pokémon Card Generator - Le Wagon 2021
             {{ wtf.quick_form(form) }}
 
             <p class="pt-5"><strong>{{ message }}</strong></p>
-
-
-
         </div>
     </div>
 </div>

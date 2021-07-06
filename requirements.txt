@@ -8,7 +8,19 @@ wheel>=0.29
 numpy==1.19.5
 pandas
 scikit-learn
+<<<<<<< HEAD
+matplotlib
+os
+
+# tests/linter
+black
+coverage
+flake8
+pytest
+yapf
+=======
 matplotlib==3.2.2
+>>>>>>> master
 
 # API
 requests
@@ -19,9 +31,15 @@ fastapi
 joblib
 
 # web
+<<<<<<< HEAD
+streamlit
+requests
+PIL
+=======
 flask
 flask-wtf
 Flask-Bootstrap4
 
 # Openai for text models
 openai
+>>>>>>> master
