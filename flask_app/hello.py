@@ -4,10 +4,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
-<<<<<<< HEAD
 import requests
-=======
->>>>>>> master
 
 app = Flask(__name__)
 
@@ -35,7 +32,6 @@ def index():
     # 'form' is the variable name used in this template: index.html
     form = Form()
     message = ""
-<<<<<<< HEAD
     if form.validate_on_submit():
         pokémon_name = form.pokémon_name.data
         rarity = form.rarity.data
@@ -47,7 +43,4 @@ def index():
         )
     else:
         message = "Please select a Pokémon and a rarity level."
-=======
-
->>>>>>> master
     return render_template("index.html", form=form, message=message)
