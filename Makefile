@@ -61,19 +61,6 @@ count_lines:
 start_api:
 	@uvicorn api.fast:app --reload
 
-<<<<<<< HEAD
-pypi:
-	@twine upload dist/* -u $(PYPI_USERNAME)
-
-# ----------------------------------
-#         HEROKU COMMANDS
-# ----------------------------------
-
-streamlit:
-	-@streamlit run app.py
-
-
-=======
 
 ### GOOGLE Cloud stuff
 
@@ -102,4 +89,3 @@ docker_deploy:
 
 docker_run_at_google:
 	gcloud run deploy ${SERVICE} --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION}
->>>>>>> master
