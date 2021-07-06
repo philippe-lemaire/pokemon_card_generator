@@ -61,7 +61,9 @@ Pokémon Card Generator - Le Wagon 2021
                             {% for attack in card_data.data.attacks %}
                             <tr>
                                 <td>
-                                    <p id="attack_cost">{{attack.cost}}</p>
+                                    {% for mana in card_data.data.attacks[0].cost %}
+                                    <img width=40 src="../static/images/card_icons/{{mana.lower()}}_logo.png" />
+                                    {% endfor%}
                                 </td>
                                 <td>
                                     <p id="attack_name_and_damage">{{attack.name}}</p>
@@ -80,17 +82,34 @@ Pokémon Card Generator - Le Wagon 2021
                         </table>
                     </div>
                     {% if card_data.data.weaknesses|length >0 %}
-                    <p>Weakness: {{card_data.data.weaknesses.text}}</p>
+                    <p id="weakness"><img width=20
+                            src="../static/images/card_icons/{{card_data.data.weaknesses[0].type.lower()}}_logo.png" />
+                        {{card_data.data.weaknesses[0].value}}</p>
                     {% endif %}
 
                     {% if card_data.data.resistances|length >0 %}
-                    <p>Resistances: {{card_data.data.resistances}}</p>
+                    <p id="resistance"><img width=20
+                            src="../static/images/card_icons/{{card_data.data.resistances[0].type.lower()}}_logo.png" />
+                        {{card_data.data.resistances[0].value}}</p>
                     {% endif %}
 
-                    <p>Retreat cost: {{card_data.data.retreatCost}}</p>
+                    {% if card_data.data.retreatCost|length >0 %}
+                    <p id="retreatCost">
+                        {% for mana in card_data.data.retreatCost %}
+                        <img width=20 src="../static/images/card_icons/{{mana.lower()}}_logo.png" />
+                        {% endfor%}
+                    </p>
+                    {% endif %}
+
                     <div id="flavorText">
                         <p>{{card_data.data.flavorText}}</p>
                     </div>
+                    <div id="illustrator">
+                        <p>Illus. LeWagonLyon</p>
+                    </div>
+
+                    <img id="logo"
+                        src="https://dwj199mwkel52.cloudfront.net/assets/lewagon-logo-square-b6124eb974be375884558e4464efce48a9b5664f18422768156364363ecdd1fc.png" />
 
                 </div>
             </div>

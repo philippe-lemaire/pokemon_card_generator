@@ -63,7 +63,7 @@ font-size: 2.1rem;
   position: absolute;
   z-index: -20;
   left: 73px;
-  top: 101px;
+  top: 100px;
 }
 
 
@@ -100,7 +100,7 @@ font-size: 2.1rem;
 }
 
 td, tr, table {
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
 #flavorText {
@@ -109,6 +109,55 @@ td, tr, table {
   left: 259px;
   top: 920px;
   width: 450px;
+  font-size: 1.6rem;
+  text-align: right;
+}
+
+#illustrator {
+  position: absolute;
+  z-index: 50;
+  left: 64px;
+  top: 931px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+#logo {
+  position: absolute;
+  z-index: 50;
+  left: 60px;
+  top: 955px;
+  width: 30px;
+}
+
+
+#weakness {
+  position: absolute;
+  z-index: 50;
+  left: -75px;
+  top: 884px;
+  width: 250px;
+  font-size: 1.6rem;
+  text-align: right;
+  font-weight: bold;
+}
+
+#resistance {
+  position: absolute;
+  z-index: 50;
+  left: 24px;
+  top: 884px;
+  width: 350px;
+  font-size: 1.6rem;
+  text-align: right;
+  font-weight: bold;
+}
+
+#retreatCost {
+  position: absolute;
+  z-index: 50;
+  left: 539px;
+  top: 884px;
   font-size: 1.6rem;
   text-align: right;
 }
