@@ -1,11 +1,11 @@
 import csv
 import pandas as pd
 from pokemon_card_generator.data.set_data import get_sets
-from os import walk, path
+from os import walk, path, makedirs
 import string
 
 
-def get_card_data():
+def create_card_data_pickle():
     """Concatenates all the pickles in 'raw_data/pickles' and returns a dataframe.
     Usage: from pokemon_card_generator.data import card_data; card_df = card_data.get_card_data()"""
     # list all the files in data
@@ -50,7 +50,7 @@ def get_card_data():
         try:
             weaknesses.append(weakness[0]["type"])
         except:
-            types.append(weakness)
+            weaknesses.append(weakness)
 
     cards_df.weaknesses = pd.Series(weaknesses)
 
@@ -102,7 +102,6 @@ def get_card_data():
         "number",
         "ancientTrait",
         "artist",
-        "nationalPokedexNumbers",
         "legalities",
         "images",
         "tcgplayer",
@@ -154,8 +153,7 @@ def get_card_data():
     ]
 
     attack2_converted_cost = [
-        len(cost) if isinstance(cost, list) and len(cost) > 1 else cost
-        for cost in attack2_cost
+        len(cost) if isinstance(cost, list) else cost for cost in attack2_cost
     ]
 
     attack2_damage = [
@@ -186,8 +184,7 @@ def get_card_data():
     ]
 
     attack3_converted_cost = [
-        len(cost) if isinstance(cost, list) and len(cost) > 1 else cost
-        for cost in attack3_cost
+        len(cost) if isinstance(cost, list) else cost for cost in attack3_cost
     ]
 
     attack3_damage = [
@@ -268,12 +265,13 @@ def get_card_data():
         "Team Aqua's ",
         "Holon's ",
         "Imakuni?'s ",
+        "Ash-",
     ]
 
     for trainer in trainer_names:
         cards_df.name = cards_df.name.apply(lambda x: x.replace(trainer, ""))
 
-    # remove trainer's names from pokemon name
+    # remove [A] and so on from Unown's names
 
     letters = [f" [{letter}]" for letter in string.ascii_uppercase]
 
@@ -342,16 +340,65 @@ def get_card_data():
         "Special Delivery ",
         "Dusk Mane ",
         "Ultra ",
+        "Team ",
+        "Buried ",
+        " Bros.",
         # rotom is fun
         "Mow ",
         "Heat ",
         "Wash ",
         "Frost ",
+        "Cool ",
+        "Mow ",
+        "Fan ",
+        # forme
+        " Speed Forme",
+        " Normal Forme",
+        " Rain Form",
+        " Attack Forme",
+        " Defense Forme",
+        " Snow-Cloud Form",
+        " Sunny Form",
+        "Snow-cloud ",
+        "Sunny ",
+        "Rain ",
     ]
 
     for gimmick in gimmicks:
         cards_df.name = cards_df.name.apply(lambda x: x.replace(gimmick, ""))
 
-    ## clean up more names
+    ## clean up nidoran male and female names
+    cards_df.name = cards_df.name.apply(lambda x: x.replace("Nidoran ", "Nidoran"))
 
+    ## clean up " ex"
+    def clean_ex(s):
+        if s.endswith(" ex"):
+            s = s[:-3]
+        return s
+
+    cards_df.name = cards_df.name.apply(lambda x: clean_ex(x))
+
+    ## clean up trailing letter
+    def clean_trailing(s):
+        for letter in string.ascii_uppercase + "?" + "!":
+            if s.endswith(f" {letter}"):
+                s = s[:-2]
+        return s
+
+    cards_df.name = cards_df.name.apply(lambda x: clean_trailing(x))
+    # set the path
+    cards_df_pickle_path = path.join(pickles_path, "cards_df")
+    # make the folder
+    makedirs(cards_df_pickle_path, exist_ok=True)
+    # save the pickle
+    cards_df.to_pickle(path.join(cards_df_pickle_path, "cards_df.pickle"))
+    print(f"Pickle saved in {cards_df_pickle_path}")
+    return None
+
+
+def get_card_data():
+    """Just opens the pickle and returns the dataframe"""
+    two_dirs_up = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
+    pickle_path = path.join(two_dirs_up, "raw_data/pickles/cards_df")
+    cards_df = pd.read_pickle(path.join(pickle_path, "cards_df.pickle"))
     return cards_df

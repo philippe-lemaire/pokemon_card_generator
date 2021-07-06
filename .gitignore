@@ -8,3 +8,5 @@ raw_data/
 .env
 pokemontcg_api_key/
 notebooks/
+openai_api_key/
+pokemon-card-generator-wagon-6d590b27db79.json

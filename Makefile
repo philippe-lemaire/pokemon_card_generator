@@ -48,13 +48,20 @@ count_lines:
 # ----------------------------------
 #      UPLOAD PACKAGE TO PYPI
 # ----------------------------------
-PYPI_USERNAME=<AUTHOR>
-build:
-	@python setup.py sdist bdist_wheel
+#PYPI_USERNAME=<AUTHOR>
+#build:
+#	@python setup.py sdist bdist_wheel
+#
+#pypi_test:
+#	@twine upload -r testpypi dist/* -u $(PYPI_USERNAME)
+#
+#pypi:
+#	@twine upload dist/* -u $(PYPI_USERNAME)
 
-pypi_test:
-	@twine upload -r testpypi dist/* -u $(PYPI_USERNAME)
+start_api:
+	@uvicorn api.fast:app --reload
 
+<<<<<<< HEAD
 pypi:
 	@twine upload dist/* -u $(PYPI_USERNAME)
 
@@ -66,3 +73,33 @@ streamlit:
 	-@streamlit run app.py
 
 
+=======
+
+### GOOGLE Cloud stuff
+
+# project id
+PROJECT_ID=pokemon-card-generator-wagon
+REGION=europe-west1
+
+enable_registry:
+	gcloud services enable containerregistry.googleapis.com --project=${PROJECT_ID}
+
+set_project:
+	-@gcloud config set project ${PROJECT_ID}
+
+### Docker stuff
+SERVICE = pokecardgenerator
+
+DOCKER_IMAGE_NAME = pokemon_card_docker_image
+docker_build_image:
+	docker build -t eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} .
+
+docker_run_locally:
+	docker run -e PORT=8000 -p 8000:8000 eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
+
+docker_deploy:
+	docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
+
+docker_run_at_google:
+	gcloud run deploy ${SERVICE} --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${REGION}
+>>>>>>> master

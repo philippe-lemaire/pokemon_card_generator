@@ -8,6 +8,7 @@ wheel>=0.29
 numpy==1.19.5
 pandas
 scikit-learn
+<<<<<<< HEAD
 matplotlib
 os
 
@@ -17,21 +18,28 @@ coverage
 flake8
 pytest
 yapf
+=======
+matplotlib==3.2.2
+>>>>>>> master
 
 # API
-gcsfs
-google-cloud-storage
-mlflow
-s3fs
 requests
+uvicorn
+fastapi
 
 # utilities
-six>=1.14
 joblib
-memoized-property
-termcolor
 
 # web
+<<<<<<< HEAD
 streamlit
 requests
 PIL
+=======
+flask
+flask-wtf
+Flask-Bootstrap4
+
+# Openai for text models
+openai
+>>>>>>> master
