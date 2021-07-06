@@ -16,10 +16,11 @@ from pokemon_card_generator.models.get_illustration import get_illustration
 
 
 def get_weight_and_height_and_cat(pokémon_name, cards_df, *args, **kwargs):
-    base_stats = get_stats()
-    weight = base_stats.Weight[pokemon_list.index(pokémon_name)]
-    height = base_stats.Height[pokemon_list.index(pokémon_name)]
-    cat = base_stats.Category[pokemon_list.index(pokémon_name)] + " Pokémon"
+    stats_df = get_stats()
+
+    cat = stats_df[stats_df.index == pokémon_name]["Category"].to_list()[0]
+    weight = stats_df[stats_df.index == pokémon_name]["Weight"].to_list()[0]
+    height = stats_df[stats_df.index == pokémon_name]["Height"].to_list()[0]
     return weight, height, cat
 
 
