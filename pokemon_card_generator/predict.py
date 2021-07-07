@@ -42,9 +42,12 @@ def create_card(pokémon_name, rarity):
     card_dict["data"]["abilities"], ability_presence = abilitys_generator(
         pokémon_name, cards_df, rarity
     )
-    card_dict["data"]["attacks"] = attacks_generator(
-        pokémon_name, cards_df, rarity, ability_presence
-    )
+    try:
+        card_dict["data"]["attacks"] = attacks_generator(
+            pokémon_name, cards_df, rarity, ability_presence
+        )
+    except:
+        card_dict["data"]["attacks"] = []
 
     card_dict["data"]["weaknesses"] = predict_weaknesses(pokémon_name, cards_df, rarity)
     card_dict["data"]["resistances"] = predict_resistances(
