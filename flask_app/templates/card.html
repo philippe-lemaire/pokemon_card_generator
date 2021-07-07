@@ -32,67 +32,101 @@ Pokémon Card Generator - Le Wagon 2021
 
             <div class='globalclass'>
                 <div class="containeur">
+                    <!-- fond de la carte -->
                     <img id="card" src="../static/images/cleaned_cards/{{card_data.data.types[0].lower()}}.png" />
+                    <!-- nom du pokémon -->
+                    {% if card_data.data.types[0].lower() == "darkness" %}
+                    <p id="name_whited">{{card_data.data.name}}</p>
+                    {% else %}
                     <p id="name">{{card_data.data.name}}</p>
-                    <p id="hp"><span style="font-size: 1.5rem"><strong>HP</strong></span>{{card_data.data.hp}}</p>
+                    {% endif %}
+                    <!-- HP -->
+                    {% if card_data.data.types[0].lower() == "darkness" %}
+                    <p id="hp_whited"><span style="font-size: 2.1rem; font-weight: 900">HP</span>{{card_data.data.hp}}
+                    </p>
+                    {% else %}
+                    <p id="hp"><span style="font-size: 2.1rem; font-weight: 900">HP</span>{{card_data.data.hp}}</p>
+                    {% endif %}
+                    <!-- illustration -->
                     <img id="illustration" style="height: 385px" src="static/images/{{card_data.data.illustration}}" />
-
+                    <!-- category -->
                     <div class="centered">
                         <p id="category">NO. {{card_data.data.nationalPokedexNumbers[0]}}
-                            {{card_data.data.category}} HT:
-                            {{card_data.data.height}} WT: {{card_data.data.weight}}</p>
+                            {{card_data.data.category}} Pokémon HT:
+                            {{card_data.data.height}} WT: {{card_data.data.weight}}.</p>
                     </div>
                     <div id="attacks">
                         <table id="attack_table">
                             <tr>
+                                <!-- abilités -->
                                 {% if card_data.data.abilities|length >0 %}
-                                <td><img id="ability" src="../static/images/card_icons/ability.png" /></td>
+                                <td id="td_ability"><img id="ability" src="../static/images/card_icons/ability.png" />
+                                </td>
                                 <td colspan="2">
                                     <p id="ability_name">{{card_data.data.abilities[0].name}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
+                                    {% if card_data.data.types[0].lower() == "darkness" %}
+                                    <p id="ability_text_whited">{{card_data.data.abilities[0].text}}</p>
+                                    {% else %}
                                     <p id="ability_text">{{card_data.data.abilities[0].text}}</p>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% endif %}
 
                             {% for attack in card_data.data.attacks %}
                             <tr>
-                                <td>
+                                <!-- attaques -->
+                                <td id="td_attack_logo">
                                     {% for mana in card_data.data.attacks[0].cost %}
                                     <img width=40 src="../static/images/card_icons/{{mana.lower()}}_logo.png" />
                                     {% endfor%}
                                 </td>
                                 <td>
-                                    <p id="attack_name_and_damage">{{attack.name}}</p>
+                                    {% if card_data.data.types[0].lower() == "darkness" %}
+                                    <p id="attack_name_whited">{{attack.name}}</p>
+                                    {% else %}
+                                    <p id="attack_name">{{attack.name}}</p>
+                                    {% endif %}
                                 </td>
                                 <td>
-                                    <p id="attack_name_and_damage">{{attack.damage}}</p>
+                                    {% if card_data.data.types[0].lower() == "darkness" %}
+                                    <p id="attack_damage_whited">{{attack.damage}}</p>
+                                    {% else %}
+                                    <p id="attack_damage">{{attack.damage}}</p>
+                                    {% endif %}
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <p id="attack_text"><span
-                                            style="font-size: 1.5rem; top: 50px"></span>{{attack.text}}</span></p>
+                                    {% if card_data.data.types[0].lower() == "darkness" %}
+                                    <p id="attack_text_whited">{{attack.text}}</p>
+                                    {% else %}
+                                    <p id="attack_text">{{attack.text}}</p>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% endfor%}
                         </table>
                     </div>
+                    <!-- faiblesse -->
                     {% if card_data.data.weaknesses|length >0 %}
                     <p id="weakness"><img width=20
                             src="../static/images/card_icons/{{card_data.data.weaknesses[0].type.lower()}}_logo.png" />
                         {{card_data.data.weaknesses[0].value}}</p>
                     {% endif %}
 
+                    <!-- résistance -->
                     {% if card_data.data.resistances|length >0 %}
                     <p id="resistance"><img width=20
                             src="../static/images/card_icons/{{card_data.data.resistances[0].type.lower()}}_logo.png" />
                         {{card_data.data.resistances[0].value}}</p>
                     {% endif %}
 
+                    <!-- coût de retrait -->
                     {% if card_data.data.retreatCost|length >0 %}
                     <p id="retreatCost">
                         {% for mana in card_data.data.retreatCost %}
@@ -101,16 +135,42 @@ Pokémon Card Generator - Le Wagon 2021
                     </p>
                     {% endif %}
 
+                    <!-- text d'ambiance -->
+                    {% if card_data.data.types[0].lower() == "darkness" %}
+                    <div id="flavorText_whited">
+                        <p>{{card_data.data.flavorText}}</p>
+                    </div>
+                    {% else %}
                     <div id="flavorText">
                         <p>{{card_data.data.flavorText}}</p>
                     </div>
+                    {% endif %}
+
+                    <!-- illustrateur -->
+                    {% if card_data.data.types[0].lower() == "darkness" %}
+                    <div id="illustrator_whited">
+                        <p>Illus. LeWagonLyon</p>
+                    </div>
+                    {% else %}
                     <div id="illustrator">
                         <p>Illus. LeWagonLyon</p>
                     </div>
+                    {% endif %}
 
+                    <!-- logo d'édition -->
                     <img id="logo"
                         src="https://dwj199mwkel52.cloudfront.net/assets/lewagon-logo-square-b6124eb974be375884558e4464efce48a9b5664f18422768156364363ecdd1fc.png" />
 
+
+                    {% if card_data.data.types[0].lower() == "darkness" %}
+                    <div id="card_number_whited">
+                        <p>{{card_number}}</p>
+                    </div>
+                    {% else %}
+                    <div id="card_number">
+                        <p>{{card_number}}</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
