@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 import requests
+import numpy as np
 
 app = Flask(__name__)
 
@@ -33,13 +34,26 @@ def index():
     form = Form()
     message = ""
     if form.validate_on_submit():
+        random_set_size = np.random.randint(101, 200)
+        random_card_number = np.random.randint(1, random_set_size)
+        if random_card_number < 10:
+            card_number = f"00{random_card_number}/{random_set_size}"
+        elif random_card_number < 100:
+            card_number = f"0{random_card_number}/{random_set_size}"
+        else:
+            card_number = f"{random_card_number}/{random_set_size}"
+
         pokémon_name = form.pokémon_name.data
         rarity = form.rarity.data
         base_api_url = "https://pokecardgenerator-tybpdn52ha-ew.a.run.app/create_card"
         params = {"pokémon_name": pokémon_name, "rarity": rarity}
         card_data = requests.get(url=base_api_url, params=params).json()
         return render_template(
-            "card.html", form=form, message=message, card_data=card_data
+            "card.html",
+            form=form,
+            message=message,
+            card_data=card_data,
+            card_number=card_number,
         )
     else:
         message = "Please select a Pokémon and a rarity level."
