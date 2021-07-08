@@ -1,16 +1,16 @@
 @font-face {
   font-family: 'pokemon_font';
-  src: url('fonts/GillSans.woff2') format('woff2'),
-       url('fonts/GillSans.woff') format('woff'),
-       url('fonts/GillSans.ttf') format('truetype')
+  src: url('../fonts/') format('woff2'),
+       url('../fonts/GillSans.woff') format('woff'),
+       url('../fonts/GillSans.ttf') format('truetype')
 /* can be downloaded from : https://google-webfonts-helper.herokuapp.com/fonts */
 }
 
 @font-face {
   font-family: 'pokemon_numbers';
-  src: url('fonts/Questrial-Regular.woff2') format('woff2'),
-       url('fonts/Questrial-Regular.woff') format('woff'),
-       url('fonts/Questrial-Regular.ttf') format('truetype')
+  src: url('../fonts/Questrial-Regular.woff2') format('woff2'),
+       url('../fonts/Questrial-Regular.woff') format('woff'),
+       url('../fonts/Questrial-Regular.ttf') format('truetype')
 /* can be downloaded from : https://google-webfonts-helper.herokuapp.com/fonts */
 } */
 
@@ -21,9 +21,11 @@
        url('fonts/Spartan-ExtraBold.ttf') format('truetype')
 /* can be downloaded from : https://google-webfonts-helper.herokuapp.com/fonts */
 
+
 .globalclass {
   font-size:1.6rem;
 }
+
 
 .containeur {
   position:absolute;
@@ -48,8 +50,8 @@ position:absolute;
   position: absolute;
   z-index: 30;
   left: 154px;
-  top: 29px;
-  font-size: 4.5rem;
+  top: 35px;
+  font-size: 42px;
   font-weight: 900;
   font-family: pokemon_font;
   font-stretch: ultra-expanded;
@@ -61,8 +63,8 @@ position:absolute;
   position: absolute;
   z-index: 30;
   left: 154px;
-  top: 29px;
-  font-size: 4.5rem;
+  top: 35px;
+  font-size: 42px;
   font-weight: 900;
   font-family: pokemon_font;
   font-stretch: ultra-expanded;
@@ -74,9 +76,9 @@ position:absolute;
 {
   position: absolute;
   z-index: 40;
-  right: 128px;
-  top: 39px;
-  font-size: 4.2rem;
+  right: 111px;
+  top: 31px;
+  font-size: 53px;
   font-weight: 900;
   font-family: pokemon_numbers;
 }
@@ -85,9 +87,9 @@ position:absolute;
 {
   position: absolute;
   z-index: 40;
-  right: 128px;
-  top: 39px;
-  font-size: 4.2rem;
+  right: 111px;
+  top: 31px;
+  font-size: 53px;
   font-weight: 900;
   font-family: pokemon_numbers;
   color: white;
@@ -102,7 +104,7 @@ position:absolute;
 }
 
 #category {
-  font-size: 1.5rem;
+  font-size: 16px;
   position: absolute;
   text-align: center;
   z-index: 40;
@@ -127,43 +129,40 @@ vertical-align: top;
   z-index: 20;
   font-weight: bold;
   color: #9c1114;
-  font-size:4.0rem;
+  font-size:48px;
   text-align: left;
   font-family: pokemon_font;
 }
 
 #attack_name{
-  z-index: 20;
-  font-weight: bold;
-  color: black;
-  font-size:4.0rem;
-  text-align: left;
-  font-family: pokemon_font;
+z-index: 20;
+    font-weight: bold;
+    color: black;
+    font-size: 44px;
+    font-family: pokemon_font;
 }
 
 #attack_name_whited{
   z-index: 20;
   font-weight: bold;
   color: white;
-  font-size:4.0rem;
-  text-align: left;
+  font-size:43px;
   font-family: pokemon_font;
 }
 
 #attack_damage{
   z-index: 20;
-  font-weight: 900;
+  font-weight: bold;
   color: black;
-  font-size:4.0rem;
+  font-size: 44px;
   text-align: right;
   font-family: pokemon_numbers;
 }
 
 #attack_damage_whited{
   z-index: 20;
-  font-weight: 900;
-  color: black;
-  font-size:4.0rem;
+  font-weight: bold;
+  font-size: 44px;
   text-align: right;
   font-family: pokemon_numbers;
   color: white;
@@ -172,7 +171,7 @@ vertical-align: top;
 #ability_text, #attack_text
 {
 z-index: 20;
-font-size: 2.3rem;
+font-size: 24px;
 text-align: justify;
 font-family: pokemon_font;
 }
@@ -180,7 +179,7 @@ font-family: pokemon_font;
 #ability_text_whited, #attack_text_whited
 {
 z-index: 20;
-font-size: 2.3rem;
+font-size: 24px;
 text-align: justify;
 font-family: pokemon_font;
 color: white;
@@ -200,9 +199,6 @@ color: white;
   width: 638px;
 }
 
-td, tr, table {
-  border: 0px solid black;
-}
 
 #td_ability, #td_attack_logo {
   table-layout: fixed;
@@ -215,7 +211,7 @@ td, tr, table {
   right: 70px;
   top: 920px;
   width: 480px;
-  font-size: 1.7rem;
+  font-size: 18px;
   text-align: right;
   font-family: pokemon_font;
 }
@@ -226,7 +222,7 @@ td, tr, table {
   right: 70px;
   top: 920px;
   width: 480px;
-  font-size: 1.7rem;
+  font-size: 18px;
   text-align: right;
   font-family: pokemon_font;
   color: white;
@@ -237,7 +233,7 @@ td, tr, table {
   z-index: 50;
   left: 64px;
   top: 931px;
-  font-size: 1.4rem;
+  font-size: 17px;
   font-weight: bold;
   font-family: pokemon_font;
   font-style: italic;
@@ -248,7 +244,7 @@ td, tr, table {
   z-index: 50;
   left: 64px;
   top: 931px;
-  font-size: 1.4rem;
+  font-size: 17px;
   font-weight: bold;
   font-family: pokemon_font;
   font-style: italic;
@@ -267,10 +263,10 @@ td, tr, table {
 #weakness {
   position: absolute;
   z-index: 50;
-  left: -75px;
-  top: 885px;
+  left: -58px;
+  top: 877px;
   width: 250px;
-  font-size: 1.6rem;
+  font-size: 24px;
   text-align: right;
   font-weight: bold;
 }
@@ -278,10 +274,10 @@ td, tr, table {
 #resistance {
   position: absolute;
   z-index: 50;
-  left: 24px;
-  top: 884px;
+  left: 43px;
+  top: 877px;
   width: 350px;
-  font-size: 1.6rem;
+  font-size: 24px;
   text-align: right;
   font-weight: bold;
 }
@@ -290,8 +286,8 @@ td, tr, table {
   position: absolute;
   z-index: 50;
   left: 539px;
-  top: 884px;
-  font-size: 1.6rem;
+  top: 877px;
+  font-size: 24px;
   text-align: right;
 }
 
@@ -299,8 +295,8 @@ td, tr, table {
   position: absolute;
   z-index: 50;
   left: 103px;
-  bottom: -998px;
-  font-size: 1.6rem;
+  bottom: -989px;
+  font-size: 16px;
   font-weight: 900;
   font-style: italic;
 }
@@ -309,9 +305,13 @@ td, tr, table {
   position: absolute;
   z-index: 50;
   left: 103px;
-  bottom: -998px;
-  font-size: 1.6rem;
+  bottom: -989px;
+  font-size: 16px;
   font-weight: 900;
   font-style: italic;
   color: white;
+}
+
+p{
+  margin: 0px;
 }
