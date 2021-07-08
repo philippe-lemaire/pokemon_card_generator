@@ -312,6 +312,13 @@ color: white;
   color: white;
 }
 
+#rarity {
+  position: absolute;
+  z-index: 50;
+  left: 103px;
+  bottom: -689px;
+}
+
 p{
   margin: 0px;
 }

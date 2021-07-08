@@ -171,6 +171,12 @@ Pokémon Card Generator - Le Wagon 2021
                         <p>{{card_number}}</p>
                     </div>
                     {% endif %}
+
+                    {% if card_data.data.types[0].lower() == "darkness" %}
+                    <img id="rarity" src="../static/images/card_icons/rarity_whited_{{rarity}}.png" />
+                    {% else %}
+                    <img id="rarity" src="../static/images/card_icons/rarity_{{rarity}}.png" />
+                    {% endif %}
                 </div>
             </div>
         </div>
