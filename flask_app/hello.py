@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 import requests
-import numpy as np
+import random
 
 app = Flask(__name__)
 
@@ -34,8 +34,8 @@ def index():
     form = Form()
     message = ""
     if form.validate_on_submit():
-        random_set_size = np.random.randint(101, 200)
-        random_card_number = np.random.randint(1, random_set_size)
+        random_set_size = random.randint(101, 200)
+        random_card_number = random.randint(1, random_set_size)
         if random_card_number < 10:
             card_number = f"00{random_card_number}/{random_set_size}"
         elif random_card_number < 100:
