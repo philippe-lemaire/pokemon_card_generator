@@ -10,4 +10,4 @@ COPY flask_app /flask_app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD cd flask_app/ && gunicorn wsgi:app --host 0.0.0.0 --port $PORT
+CMD cd flask_app/ && gunicorn wsgi:app -b 0.0.0.0:$PORT
