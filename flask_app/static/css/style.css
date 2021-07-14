@@ -1,0 +1,344 @@
+@font-face {
+  font-family: 'pokemon_font';
+  src: url('../fonts/') format('woff2'),
+  url('../fonts/GillSans.woff') format('woff'),
+  url('../fonts/GillSans.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'pokemon_numbers';
+  src: url('../fonts/Questrial-Regular.woff2') format('woff2'),
+  url('../fonts/Questrial-Regular.woff') format('woff'),
+  url('../fonts/Questrial-Regular.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'pokemon_title';
+  src: url('../fonts/Pokemon-Hollow.ttf') format('truetype')
+}
+
+.globalclass {
+  font-size:1.6rem;
+}
+
+#pokemon_title {
+  font-family: pokemon_title;
+  text-align: center;
+  letter-spacing: 3px;
+}
+.containeur {
+  position:absolute;
+  /* marge sur les cotés de l'écran */
+  padding-right: 15px;
+  padding-left: 15px;
+
+  /* centr */
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+.lead {
+  text-align: center;
+  font-size: small;
+}
+
+#card
+{
+z-index: -10;
+position:absolute;
+}
+
+#name
+{
+  position: absolute;
+  z-index: 30;
+  left: 154px;
+  top: 35px;
+  font-size: 42px;
+  font-weight: 900;
+  font-family: pokemon_font;
+  font-stretch: ultra-expanded;
+  letter-spacing: 2px;
+}
+
+#name_whited
+{
+  position: absolute;
+  z-index: 30;
+  left: 154px;
+  top: 35px;
+  font-size: 42px;
+  font-weight: 900;
+  font-family: pokemon_font;
+  font-stretch: ultra-expanded;
+  letter-spacing: 2px;
+  color: white;
+}
+
+#hp
+{
+  position: absolute;
+  z-index: 40;
+  right: 111px;
+  top: 31px;
+  font-size: 53px;
+  font-weight: 900;
+  font-family: pokemon_numbers;
+}
+
+#hp_whited
+{
+  position: absolute;
+  z-index: 40;
+  right: 111px;
+  top: 31px;
+  font-size: 53px;
+  font-weight: 900;
+  font-family: pokemon_numbers;
+  color: white;
+}
+
+#illustration
+{
+  position: absolute;
+  z-index: -20;
+  left: 73px;
+  top: 100px;
+}
+
+#category {
+  font-size: 15px;
+  position: absolute;
+  text-align: center;
+  z-index: 40;
+  top: 490px;
+  color: #272727;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#ability
+{
+z-index: 20;
+vertical-align: top;
+}
+
+#ability_name{
+  z-index: 20;
+  font-weight: bold;
+  color: #9c1114;
+  font-size:48px;
+  text-align: left;
+  font-family: pokemon_font;
+}
+
+#attack_name{
+z-index: 20;
+    font-weight: bold;
+    color: black;
+    font-size: 44px;
+    font-family: pokemon_font;
+}
+
+#attack_name_whited{
+  z-index: 20;
+  font-weight: bold;
+  color: white;
+  font-size:43px;
+  font-family: pokemon_font;
+}
+
+#attack_damage{
+  z-index: 20;
+  font-weight: bold;
+  color: black;
+  font-size: 44px;
+  text-align: right;
+  font-family: pokemon_numbers;
+}
+
+#attack_damage_whited{
+  z-index: 20;
+  font-weight: bold;
+  font-size: 44px;
+  text-align: right;
+  font-family: pokemon_numbers;
+  color: white;
+}
+
+#ability_text, #attack_text
+{
+z-index: 20;
+font-size: 22px;
+text-align: justify;
+font-family: pokemon_font;
+}
+
+#ability_text_whited, #attack_text_whited
+{
+z-index: 20;
+font-size: 22px;
+text-align: justify;
+font-family: pokemon_font;
+color: white;
+}
+
+#attacks {
+  position: absolute;
+  z-index: 50;
+  left: 69px;
+}
+
+#attack_table {
+  position: absolute;
+  z-index: 50;
+  left: -8px;
+  top: 525px;
+  width: 638px;
+}
+
+
+#td_ability, #td_attack_logo {
+  table-layout: fixed;
+  width: 200px;
+}
+
+#flavorText {
+  position: absolute;
+  z-index: 50;
+  right: 70px;
+  top: 920px;
+  width: 480px;
+  font-size: 18px;
+  text-align: right;
+  font-family: pokemon_font;
+}
+
+#flavorText_whited {
+  position: absolute;
+  z-index: 50;
+  right: 70px;
+  top: 920px;
+  width: 480px;
+  font-size: 18px;
+  text-align: right;
+  font-family: pokemon_font;
+  color: white;
+}
+
+#illustrator {
+  position: absolute;
+  z-index: 50;
+  left: 64px;
+  top: 931px;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: pokemon_font;
+  font-style: italic;
+}
+
+#illustrator_whited {
+  position: absolute;
+  z-index: 50;
+  left: 64px;
+  top: 931px;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: pokemon_font;
+  font-style: italic;
+  color: white;
+}
+
+#logo {
+  position: absolute;
+  z-index: 50;
+  left: 60px;
+  top: 955px;
+  width: 30px;
+}
+
+
+#weakness {
+  position: absolute;
+  z-index: 50;
+  left: -58px;
+  top: 877px;
+  width: 250px;
+  font-size: 24px;
+  text-align: right;
+  font-weight: bold;
+}
+
+#resistance {
+  position: absolute;
+  z-index: 50;
+  left: 43px;
+  top: 877px;
+  width: 350px;
+  font-size: 24px;
+  text-align: right;
+  font-weight: bold;
+}
+
+#retreatCost {
+  position: absolute;
+  z-index: 50;
+  left: 539px;
+  top: 877px;
+  font-size: 24px;
+  text-align: right;
+}
+
+#card_number {
+  position: absolute;
+  z-index: 50;
+  left: 103px;
+  bottom: -989px;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+#card_number_whited {
+  position: absolute;
+  z-index: 50;
+  left: 103px;
+  bottom: -989px;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+}
+
+#rarity_icon {
+  position: absolute;
+  z-index: 50;
+  left: 166px;
+  bottom: -983px;
+}
+
+p{
+  margin: 0px;
+}
+
+#wagon_card {
+  position: absolute;
+  margin-top: 100px;
+  right: 100px;
+  top: 1302px;
+}
+
+#wagon {
+  position: absolute;
+  margin-top: 100px;
+  right: 100px;
+  bottom:100px;
+}
