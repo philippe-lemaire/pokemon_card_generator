@@ -48,8 +48,7 @@ Pokémon Card Generator - Le Wagon 2021
                     <p id="hp"><span style="font-size: 25px; font-weight: 900">HP</span>{{card_data.data.hp}}</p>
                     {% endif %}
                     <!-- illustration -->
-                    <img id="illustration" style="height: 395px"
-                        src="https://www.lesgones.net/{{card_data.data.illustration}}" />
+                    <img id="illustration" style="height: 395px" src="../static/{{card_data.data.illustration}}" />
                     <!-- category -->
                     <div class="centered">
                         <p id="category">NO. {{card_data.data.nationalPokedexNumbers[0]}}
