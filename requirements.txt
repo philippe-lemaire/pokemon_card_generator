@@ -8,12 +8,12 @@ wheel>=0.29
 numpy==1.19.5
 pandas
 scikit-learn
-matplotlib==3.2.2
+#matplotlib==3.2.2
 
 # API
 requests
-uvicorn
-fastapi
+#uvicorn
+#fastapi
 
 # utilities
 joblib
@@ -22,6 +22,7 @@ joblib
 flask
 flask-wtf
 Flask-Bootstrap4
+gunicorn
 
 # Openai for text models
 openai

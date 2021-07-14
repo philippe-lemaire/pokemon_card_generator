@@ -1,0 +1,47 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link href="static/css/style.css" rel="stylesheet">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<style>
+    body {
+        background: #FFF;
+    }
+</style>
+{% endblock %}
+
+
+{% block title %}
+Pokémon Card Generator - Le Wagon 2021
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+            <h1 id="pokemon_title" class="pt-5 pb-2">Pokémon Card Generator</h1>
+
+            <p class="lead">This is a coding bootcamp project, and
+                obviously not endorsed by
+                Nintendo™.</p>
+            <br>
+            <br>
+
+            {{ wtf.quick_form(form) }}
+
+            <p style="font-size:x-large; text-align: center;" class="pt-5 pb-2">{{message}}</p>
+
+            <img class="centered" src="https://media.giphy.com/media/lM86pZcDxfx5e/giphy.gif" />
+        </div>
+    </div>
+</div>
+<div id="wagon">
+    <p style="text-align: right;">powered by batch#630 @</p><img style="height: 30px;"
+        src="../static/images/tools/le-wagon-logo.png" />
+</div>
+{% endblock %}
