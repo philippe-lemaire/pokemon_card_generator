@@ -6,8 +6,10 @@ COPY requirements.txt /requirements.txt
 COPY pokemontcg_api_key /pokemontcg_api_key
 COPY openai_api_key /openai_api_key
 COPY flask_app /flask_app
+COPY setup.py /setup.py
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pip install .
 
 CMD cd flask_app/ && gunicorn wsgi:app -b 0.0.0.0:$PORT
